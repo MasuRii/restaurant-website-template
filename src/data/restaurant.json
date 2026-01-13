@@ -1,0 +1,43 @@
+{
+  "name": {
+    "key": "site.title",
+    "default": "Risū & Oak"
+  },
+  "tagline": {
+    "key": "hero.title",
+    "default": "Seasonal Wood-Fired Dining"
+  },
+  "description": {
+    "key": "site.description",
+    "default": "Seasonal wood-fired dining in San Francisco"
+  },
+  "address": {
+    "street": "123 Mission St",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip": "94105",
+    "country": "US",
+    "display": "123 Mission St, San Francisco, CA 94105"
+  },
+  "geo": {
+    "latitude": 37.7749,
+    "longitude": -122.4194
+  },
+  "contact": {
+    "phone": "(415) 555-0123",
+    "email": "hello@risuandoak.com"
+  },
+  "hours": {
+    "weekdays": "Tuesday - Sunday",
+    "time": "5:00 PM - 10:00 PM",
+    "happyHour": "4:00 PM - 6:00 PM"
+  },
+  "social": {
+    "instagram": "https://instagram.com/risuandoak",
+    "facebook": "https://facebook.com/risuandoak",
+    "twitter": "https://twitter.com/risuandoak",
+    "tiktok": "https://tiktok.com/@risuandoak"
+  },
+  "priceRange": "$$$",
+  "cuisine": "Contemporary American"
+}

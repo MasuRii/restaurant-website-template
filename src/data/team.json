@@ -1,0 +1,14 @@
+{
+  "members": [
+    {
+      "id": "executive-chef",
+      "name": { "key": "about.chef.name", "default": "Chef Elena Sato" },
+      "title": { "key": "about.chef.title", "default": "Executive Chef" },
+      "bio": { "key": "about.chef.bio", "default": "With over 15 years of experience in Michelin-starred kitchens across Tokyo and San Francisco, Chef Sato brings a unique Japanese-Californian perspective to wood-fired cuisine." },
+      "image": "/images/chef.jpg",
+      "social": {
+        "instagram": "https://instagram.com/chefelenasato"
+      }
+    }
+  ]
+}

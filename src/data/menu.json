@@ -1,0 +1,124 @@
+{
+  "categories": [
+    {
+      "id": "appetizers",
+      "name": { "key": "menu.categories.appetizers", "default": "Appetizers" },
+      "items": [
+        {
+          "id": "octopus",
+          "name": { "key": "menu.items.octopus.name", "default": "Charred Octopus" },
+          "price": 24,
+          "currency": "USD",
+          "description": { "key": "menu.items.octopus.description", "default": "Romesco, burned lemon, chili oil" },
+          "dietaryTags": ["gf"],
+          "image": "/images/menu/octopus.jpg"
+        },
+        {
+          "id": "carrots",
+          "name": { "key": "menu.items.carrots.name", "default": "Heirloom Carrots" },
+          "price": 16,
+          "currency": "USD",
+          "description": { "key": "menu.items.carrots.description", "default": "Whipped feta, honey, za'atar, mint" },
+          "dietaryTags": ["v", "gf"],
+          "image": "/images/menu/carrots.jpg"
+        }
+      ]
+    },
+    {
+      "id": "mains",
+      "name": { "key": "menu.categories.mains", "default": "Main Courses" },
+      "items": [
+        {
+          "id": "ribeye",
+          "name": { "key": "menu.items.ribeye.name", "default": "Wood-Fired Ribeye" },
+          "price": 65,
+          "currency": "USD",
+          "description": { "key": "menu.items.ribeye.description", "default": "Bone marrow butter, frites, rosemary" },
+          "dietaryTags": ["gf"],
+          "image": "/images/menu/ribeye.jpg"
+        },
+        {
+          "id": "duck",
+          "name": { "key": "menu.items.duck.name", "default": "Roasted Duck Breast" },
+          "price": 38,
+          "currency": "USD",
+          "description": { "key": "menu.items.duck.description", "default": "Blackberry gastrique, parsnip puree, kale" },
+          "dietaryTags": ["gf"],
+          "image": "/images/menu/duck.jpg"
+        }
+      ]
+    },
+    {
+      "id": "seafood",
+      "name": { "key": "menu.categories.seafood", "default": "Seafood & Specialties" },
+      "items": [
+        {
+          "id": "market-fish",
+          "name": { "key": "menu.items.marketFish.name", "default": "Market Fish" },
+          "price": 42,
+          "currency": "USD",
+          "description": { "key": "menu.items.marketFish.description", "default": "Seasonal succotash, beurre blanc, fennel" },
+          "dietaryTags": ["gf"],
+          "image": "/images/menu/fish.jpg"
+        },
+        {
+          "id": "risotto",
+          "name": { "key": "menu.items.risotto.name", "default": "Wild Mushroom Risotto" },
+          "price": 32,
+          "currency": "USD",
+          "description": { "key": "menu.items.risotto.description", "default": "Porcini, parmesan, truffle oil, thyme" },
+          "dietaryTags": ["v", "gf"],
+          "image": "/images/menu/risotto.jpg"
+        }
+      ]
+    },
+    {
+      "id": "dessert",
+      "name": { "key": "menu.categories.dessert", "default": "Dessert" },
+      "items": [
+        {
+          "id": "tart",
+          "name": { "key": "menu.items.tart.name", "default": "Dark Chocolate Tart" },
+          "price": 14,
+          "currency": "USD",
+          "description": { "key": "menu.items.tart.description", "default": "Sea salt, olive oil, whipped crème fraîche" },
+          "dietaryTags": ["v"],
+          "image": "/images/menu/tart.jpg"
+        },
+        {
+          "id": "cheesecake",
+          "name": { "key": "menu.items.cheesecake.name", "default": "Burnt Basque Cheesecake" },
+          "price": 12,
+          "currency": "USD",
+          "description": { "key": "menu.items.cheesecake.description", "default": "Seasonal fruit compote" },
+          "dietaryTags": ["v", "gf"],
+          "image": "/images/menu/cheesecake.jpg"
+        }
+      ]
+    },
+    {
+      "id": "beverages",
+      "name": { "key": "menu.categories.beverages", "default": "Beverages" },
+      "items": [
+        {
+          "id": "fog-belt",
+          "name": { "key": "menu.items.fogBelt.name", "default": "The Fog Belt" },
+          "price": 16,
+          "currency": "USD",
+          "description": { "key": "menu.items.fogBelt.description", "default": "Gin, sage, lime, egg white, fog mist" },
+          "dietaryTags": ["v", "gf"],
+          "image": "/images/menu/cocktail1.jpg"
+        },
+        {
+          "id": "old-fashioned",
+          "name": { "key": "menu.items.oldFashioned.name", "default": "Smoked Old Fashioned" },
+          "price": 18,
+          "currency": "USD",
+          "description": { "key": "menu.items.oldFashioned.description", "default": "Bourbon, maple, walnut bitters, hickory smoke" },
+          "dietaryTags": ["v", "gf"],
+          "image": "/images/menu/cocktail2.jpg"
+        }
+      ]
+    }
+  ]
+}

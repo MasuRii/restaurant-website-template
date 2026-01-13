@@ -87,7 +87,7 @@ export default function MenuDisplay({ data }: MenuDisplayProps) {
 
       <div className="flex flex-col md:flex-row gap-12 lg:gap-24">
         {/* Sidebar/Top Categories */}
-        <nav className="flex md:flex-col overflow-x-auto md:overflow-visible gap-8 md:gap-6 md:w-48 border-b md:border-b-0 md:border-r border-charcoal/10 pb-4 md:pb-0 shrink-0 no-scrollbar" role="tablist">
+        <div className="flex md:flex-col overflow-x-auto md:overflow-visible gap-8 md:gap-6 md:w-48 border-b md:border-b-0 md:border-r border-charcoal/10 pb-4 md:pb-0 shrink-0 no-scrollbar" role="tablist">
           {categoryKeys.map(key => (
             <button
               key={key}
@@ -103,7 +103,7 @@ export default function MenuDisplay({ data }: MenuDisplayProps) {
               {data.categories[key]}
             </button>
           ))}
-        </nav>
+        </div>
 
         {/* Items Grid */}
         <div className="flex-1 min-h-[400px]">
