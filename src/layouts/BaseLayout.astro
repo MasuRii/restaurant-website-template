@@ -8,6 +8,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FloatingCTA from '../components/FloatingCTA.astro';
 import BackToTop from '../components/BackToTop.astro';
+import { NewsletterModal } from '../components/NewsletterModal';
 
 interface Props {
   title: string;
@@ -64,6 +65,18 @@ const siteDescription = description || t('site.description');
     <Footer />
     <BackToTop />
     <FloatingCTA />
+    <NewsletterModal 
+      client:idle 
+      strings={{
+        title: t('newsletterModal.title'),
+        description: t('newsletterModal.description'),
+        emailPlaceholder: t('newsletterModal.emailPlaceholder'),
+        submit: t('newsletterModal.submit'),
+        noThanks: t('newsletterModal.noThanks'),
+        dontShowAgain: t('newsletterModal.dontShowAgain'),
+        success: t('newsletterModal.success'),
+      }}
+    />
 
     <script>
       // Fade-in animation

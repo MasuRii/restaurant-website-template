@@ -193,6 +193,15 @@
     "openMenu": "Open main menu",
     "closeMenu": "Close main menu"
   },
+  "newsletterModal": {
+    "title": "A Gift from the Kitchen",
+    "description": "Join our newsletter for exclusive chef's table invites and seasonal menu previews.",
+    "emailPlaceholder": "Your email address",
+    "submit": "Subscribe",
+    "noThanks": "No thanks, I prefer to pay full price",
+    "dontShowAgain": "Don't show this again",
+    "success": "Thank you! You're on the list."
+  },
   "footer": {
     "newsletter": {
       "heading": "Join the inner circle",
