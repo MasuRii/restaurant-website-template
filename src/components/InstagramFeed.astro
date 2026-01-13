@@ -1,0 +1,55 @@
+---
+import { useTranslations } from '../lib/i18n';
+
+const t = useTranslations(Astro.currentLocale || 'en');
+
+// Placeholder images
+const posts = [
+  { id: 1, alt: "Wood fired pizza", src: "https://placehold.co/400x400/2D2D2D/FAF7F2?text=Wood+Fired" },
+  { id: 2, alt: "Chef plating dish", src: "https://placehold.co/400x400/2D2D2D/FAF7F2?text=Plating" },
+  { id: 3, alt: "Interior ambience", src: "https://placehold.co/400x400/2D2D2D/FAF7F2?text=Ambience" },
+  { id: 4, alt: "Cocktail service", src: "https://placehold.co/400x400/2D2D2D/FAF7F2?text=Cocktails" },
+  { id: 5, alt: "Fresh ingredients", src: "https://placehold.co/400x400/2D2D2D/FAF7F2?text=Fresh" },
+  { id: 6, alt: "Evening service", src: "https://placehold.co/400x400/2D2D2D/FAF7F2?text=Evening" },
+];
+---
+
+<section class="py-16 bg-background overflow-hidden reveal-on-scroll">
+  <div class="container mx-auto px-4 mb-10 text-center">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-charcoal/60"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      <span class="text-sm font-sans uppercase tracking-widest text-charcoal/60">@risuandoak</span>
+    </div>
+    <h2 class="text-3xl md:text-4xl font-serif text-charcoal mb-6">Follow the Journey</h2>
+    <a href="https://instagram.com/risuandoak" target="_blank" rel="noopener noreferrer" class="inline-block border-b border-charcoal text-charcoal hover:text-amber-900 hover:border-amber-900 transition-colors pb-1">
+      View on Instagram
+    </a>
+  </div>
+
+  <!-- Horizontal Scroll Container on Mobile, Grid on Desktop -->
+  <div class="flex md:grid md:grid-cols-6 gap-0 overflow-x-auto md:overflow-hidden w-full no-scrollbar pb-4 md:pb-0">
+    {posts.map((post) => (
+      <a href="https://instagram.com/risuandoak" target="_blank" rel="noopener noreferrer" class="block shrink-0 w-64 md:w-auto relative group overflow-hidden aspect-square">
+        <img 
+          src={post.src} 
+          alt={post.alt} 
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div class="absolute inset-0 bg-charcoal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="drop-shadow-lg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </div>
+      </a>
+    ))}
+  </div>
+  
+  <style>
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</section>

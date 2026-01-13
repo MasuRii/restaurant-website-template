@@ -8,6 +8,7 @@ import Testimonials from '../components/Testimonials.astro';
 import Reservations from '../components/Reservations.astro';
 import Location from '../components/Location.astro';
 import Events from '../components/Events.astro';
+import InstagramFeed from '../components/InstagramFeed.astro';
 import { useTranslations } from '../lib/i18n';
 
 const t = useTranslations(Astro.currentLocale || 'en');
@@ -37,4 +38,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
 
   <!-- Location Section -->
   <Location />
+
+  <!-- Social Feed -->
+  <InstagramFeed />
 </BaseLayout>

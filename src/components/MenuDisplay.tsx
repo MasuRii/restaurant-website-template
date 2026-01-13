@@ -29,9 +29,25 @@ export default function MenuDisplay({ data }: MenuDisplayProps) {
   const categoryKeys = Object.keys(data.categories);
   const [activeCategory, setActiveCategory] = useState(categoryKeys[0]);
   const [filters, setFilters] = useState<{ v: boolean; gf: boolean }>({ v: false, gf: false });
+  const [copiedItem, setCopiedItem] = useState<string | null>(null);
 
   const toggleFilter = (filter: 'v' | 'gf') => {
     setFilters(prev => ({ ...prev, [filter]: !prev[filter] }));
+  };
+
+  const handleShare = (item: MenuItem) => {
+    const text = `Check out the ${item.name} at Risū & Oak! ${item.description}`;
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      navigator.share({
+        title: item.name,
+        text: text,
+        url: window.location.href,
+      }).catch(console.error);
+    } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+      setCopiedItem(item.name);
+      setTimeout(() => setCopiedItem(null), 2000);
+    }
   };
 
   const filteredItems = data.items[activeCategory]?.filter(item => {
@@ -106,12 +122,24 @@ export default function MenuDisplay({ data }: MenuDisplayProps) {
                     <span className="text-lg font-medium text-charcoal/80 ml-6 shrink-0">{item.price}</span>
                   </div>
                   <p className="text-charcoal/60 leading-relaxed font-sans mb-3">{item.description}</p>
-                  <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -right-2 top-0 translate-x-full md:static md:translate-x-0 md:opacity-100 md:mt-1">
+                  <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -right-2 top-0 translate-x-full md:static md:translate-x-0 md:opacity-100 md:mt-1 items-center">
                     {item.dietary?.map(tag => (
                       <span key={tag} className="text-[10px] uppercase tracking-widest text-charcoal/40 border border-charcoal/10 px-1.5 py-0.5 rounded-sm">
                         {tag}
                       </span>
                     ))}
+                    <button
+                      onClick={() => handleShare(item)}
+                      className="ml-2 text-charcoal/40 hover:text-charcoal transition-colors p-1"
+                      aria-label={`Share ${item.name}`}
+                      title="Share"
+                    >
+                      {copiedItem === item.name ? (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      ) : (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                      )}
+                    </button>
                   </div>
                 </div>
               ))
