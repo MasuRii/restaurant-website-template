@@ -148,6 +148,9 @@
     "urgency": "Tables for tonight are limited.",
     "cancellation": "Easy cancellation up to 24 hours in advance."
   },
+  "testimonials": {
+    "title": "What Our Guests Say"
+  },
   "location": {
     "title": "Location & Hours",
     "description": "Find us in the heart of SoMa.",

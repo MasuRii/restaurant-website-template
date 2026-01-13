@@ -1,0 +1,65 @@
+---
+import { useTranslations } from '../lib/i18n';
+import testimonials from '../data/testimonials.json';
+
+const t = useTranslations(Astro.currentLocale || 'en');
+
+// Helper to render stars
+const renderStars = (rating: number) => {
+  return "★".repeat(rating) + "☆".repeat(5 - rating);
+};
+
+// Generate Review Schema
+const reviewsSchema = {
+  "@context": "https://schema.org",
+  "@graph": testimonials.map(review => ({
+    "@type": "Review",
+    "itemReviewed": {
+      "@type": "LocalBusiness",
+      "name": t('site.title'),
+      "address": t('location.address')
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": review.rating
+    },
+    "name": `${review.rating} star review by ${review.name}`,
+    "author": {
+      "@type": "Person",
+      "name": review.name
+    },
+    "reviewBody": review.quote,
+    "datePublished": review.date
+  }))
+};
+---
+
+<section id="testimonials" class="py-24 md:py-32 bg-stone-50 text-charcoal relative scroll-mt-20">
+  <div class="max-w-7xl mx-auto px-4 md:px-8">
+    <div class="text-center mb-16 md:mb-24">
+      <span class="text-xs font-sans uppercase tracking-[0.2em] text-charcoal/60 mb-4 block">Acclaim</span>
+      <h2 class="text-4xl md:text-5xl font-serif font-medium">{t('testimonials.title')}</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+      {testimonials.slice(0, 3).map((review) => (
+        <blockquote class="flex flex-col h-full p-8 bg-white rounded-sm shadow-sm border border-stone-100">
+          <div class="mb-6 text-amber-900/80 text-sm tracking-widest" aria-label={`Rating: ${review.rating} out of 5 stars`}>
+            {renderStars(review.rating)}
+          </div>
+          <p class="font-serif text-xl md:text-2xl leading-relaxed italic mb-8 flex-grow">
+            “{review.quote}”
+          </p>
+          <footer class="mt-auto">
+            <cite class="not-italic font-sans text-sm font-semibold tracking-wide block uppercase">
+              {review.name}
+            </cite>
+            <span class="text-xs text-charcoal/50 block mt-1">{review.role}</span>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(reviewsSchema)} />
+</section>

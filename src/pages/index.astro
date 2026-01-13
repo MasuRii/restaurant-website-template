@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import Menu from '../components/Menu.astro';
 import Gallery from '../components/Gallery.astro';
+import Testimonials from '../components/Testimonials.astro';
 import Reservations from '../components/Reservations.astro';
 import Location from '../components/Location.astro';
 import { useTranslations } from '../lib/i18n';
@@ -23,6 +24,9 @@ const t = useTranslations(Astro.currentLocale || 'en');
 
   <!-- Gallery Section -->
   <Gallery />
+
+  <!-- Testimonials Section -->
+  <Testimonials />
 
   <!-- Reservations Section -->
   <Reservations />

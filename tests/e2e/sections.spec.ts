@@ -62,4 +62,22 @@ test.describe('Sections', () => {
     expect(firstItem['@type']).toBe('MenuItem');
     expect(firstItem.offers).toBeDefined();
   });
+
+  test('testimonials section loads and has schema', async ({ page }) => {
+    const section = page.locator('#testimonials');
+    await expect(section).toBeVisible();
+
+    // Check for grid items
+    const quotes = section.locator('blockquote');
+    await expect(quotes).toHaveCount(3); // We sliced to 3
+
+    // Check schema
+    const schemaScript = section.locator('script[type="application/ld+json"]');
+    await expect(schemaScript).toHaveCount(1);
+    
+    const schemaContent = await schemaScript.textContent();
+    const schema = JSON.parse(schemaContent!);
+    expect(schema['@graph']).toBeDefined();
+    expect(schema['@graph'][0]['@type']).toBe('Review');
+  });
 });
