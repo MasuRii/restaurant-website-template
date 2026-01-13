@@ -5,45 +5,47 @@ import '../styles/global.css';
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Risū & Oak</title>
-	</head>
-	<body class="antialiased">
-		<main class="max-w-4xl mx-auto p-8 space-y-8">
-			<div class="space-y-4">
-				<h1 class="text-5xl font-serif font-bold text-primary">Risū & Oak</h1>
-				<p class="text-xl max-w-prose">
-					A seasonal wood-fired dining experience in San Francisco.
-				</p>
-			</div>
-			
-			<div class="flex gap-4">
-				<button class="px-6 py-3 bg-primary text-alabaster rounded-full font-medium hover:-translate-y-0.5 transition-transform shadow-sm">
-					Reserve a Table
-				</button>
-				<button class="px-6 py-3 border border-primary text-primary rounded-full font-medium hover:bg-primary/5 transition-colors">
-					View Menu
-				</button>
-			</div>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Risū & Oak</title>
+  </head>
+  <body class="antialiased">
+    <main class="max-w-4xl mx-auto p-8 space-y-8">
+      <div class="space-y-4">
+        <h1 class="text-5xl font-serif font-bold text-primary">Risū & Oak</h1>
+        <p class="text-xl max-w-prose">A seasonal wood-fired dining experience in San Francisco.</p>
+      </div>
 
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-charcoal/10">
-				<div class="p-6 bg-white rounded-lg shadow-sm">
-					<h2 class="text-2xl font-serif mb-2 text-accent">Typography & Color</h2>
-					<p class="text-charcoal/80">
-						This card tests the design tokens. The heading uses the <span class="text-accent font-bold">Terracotta accent</span>.
-					</p>
-				</div>
-				<div class="p-6 bg-charcoal text-alabaster rounded-lg shadow-sm">
-					<h2 class="text-2xl font-serif mb-2">Dark Context</h2>
-					<p class="text-alabaster/80">
-						Testing the reverse color scheme functionality.
-					</p>
-				</div>
-			</div>
-		</main>
-	</body>
+      <div class="flex gap-4">
+        <button
+          class="px-6 py-3 bg-primary text-alabaster rounded-full font-medium hover:-translate-y-0.5 transition-transform shadow-sm"
+        >
+          Reserve a Table
+        </button>
+        <button
+          class="px-6 py-3 border border-primary text-primary rounded-full font-medium hover:bg-primary/5 transition-colors"
+        >
+          View Menu
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-charcoal/10">
+        <div class="p-6 bg-white rounded-lg shadow-sm">
+          <h2 class="text-2xl font-serif mb-2 text-accent">Typography & Color</h2>
+          <p class="text-charcoal/80">
+            This card tests the design tokens. The heading uses the <span
+              class="text-accent font-bold">Terracotta accent</span
+            >.
+          </p>
+        </div>
+        <div class="p-6 bg-charcoal text-alabaster rounded-lg shadow-sm">
+          <h2 class="text-2xl font-serif mb-2">Dark Context</h2>
+          <p class="text-alabaster/80">Testing the reverse color scheme functionality.</p>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

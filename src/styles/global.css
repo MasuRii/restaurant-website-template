@@ -1,17 +1,17 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* Fonts */
-  --font-serif: "Playfair Display", serif;
-  --font-sans: "DM Sans", sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'DM Sans', sans-serif;
 
   /* Colors */
-  --color-alabaster: #FAF7F2;
-  --color-charcoal: #2D2D2D;
-  --color-terracotta: #D2691E;
+  --color-alabaster: #faf7f2;
+  --color-charcoal: #2d2d2d;
+  --color-terracotta: #d2691e;
   --color-charcoal-dark: #1a1a1a;
   --color-warm-grey: #e5e5e5;
-  
+
   /* Semantic Colors mapping */
   --color-background: var(--color-alabaster);
   --color-foreground: var(--color-charcoal);
@@ -32,7 +32,12 @@
     font-family: var(--font-sans);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-serif);
     font-weight: 700;
   }
