@@ -189,6 +189,7 @@
   },
   "a11y": {
     "skipToContent": "Skip to content",
+    "backToTop": "Back to top",
     "openMenu": "Open main menu",
     "closeMenu": "Close main menu"
   },

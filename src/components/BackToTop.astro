@@ -1,0 +1,52 @@
+---
+import { useTranslations } from '../lib/i18n';
+
+const t = useTranslations(Astro.currentLocale || 'en');
+---
+
+<button
+  id="back-to-top"
+  data-visible="false"
+  class="fixed z-40 bottom-24 right-6 md:bottom-28 md:right-8 bg-alabaster/80 backdrop-blur-sm text-primary border border-primary/20 p-3 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 hover:bg-white transition-all duration-300 opacity-0 pointer-events-none translate-y-4 data-[visible=true]:opacity-100 data-[visible=true]:translate-y-0 data-[visible=true]:pointer-events-auto flex items-center justify-center interactive-focus group"
+  aria-label={t('a11y.backToTop') || 'Back to top'}
+>
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="20" 
+    height="20" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    stroke-width="2" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+    class="group-hover:text-accent transition-colors"
+  >
+    <path d="m18 15-6-6-6 6"/>
+  </svg>
+</button>
+
+<script>
+  const backToTopBtn = document.getElementById('back-to-top');
+
+  const toggleBackToTop = () => {
+    if (window.scrollY > window.innerHeight) {
+      backToTopBtn?.setAttribute('data-visible', 'true');
+    } else {
+      backToTopBtn?.setAttribute('data-visible', 'false');
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  if (backToTopBtn) {
+    toggleBackToTop();
+    window.addEventListener('scroll', toggleBackToTop, { passive: true });
+    backToTopBtn.addEventListener('click', scrollToTop);
+  }
+</script>
