@@ -202,6 +202,17 @@
     "dontShowAgain": "Don't show this again",
     "success": "Thank you! You're on the list."
   },
+  "orderOnline": {
+    "title": "Order Online",
+    "delivery": "Delivery",
+    "pickup": "Pickup",
+    "deliveryPartners": "Delivery Partners",
+    "pickupTime": "Select Pickup Time",
+    "asap": "As soon as possible",
+    "schedule": "Schedule for later",
+    "close": "Close",
+    "orderNow": "Order Now"
+  },
   "footer": {
     "newsletter": {
       "heading": "Join the inner circle",

@@ -25,6 +25,12 @@ const t = useTranslations(Astro.currentLocale || 'en');
     <!-- Actions -->
     <div class="flex items-center gap-4 z-10">
       <ThemeToggle client:load />
+      <button
+        id="order-online-btn"
+        class="hidden md:inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-primary hover:text-primary/80 dark:text-alabaster dark:hover:text-alabaster/80 transition-colors interactive-focus rounded-sm"
+      >
+        {t('orderOnline.title') || 'Order Online'}
+      </button>
       <a 
         href="#reservations" 
         class="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-alabaster bg-primary hover:bg-primary/90 dark:text-primary dark:bg-alabaster dark:hover:bg-alabaster/90 rounded-sm transition-colors interactive-focus"
@@ -61,6 +67,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
       <a href="/menu" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm">{t('nav.menu')}</a>
       <a href="#events" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm">{t('nav.privateDining')}</a>
       <a href="#location" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm">{t('nav.location')}</a>
+      <button id="mobile-order-btn" class="text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm text-center">{t('orderOnline.title') || 'Order Online'}</button>
     </nav>
 
     <div class="p-8 border-t border-primary/10 safe-area-bottom">
@@ -198,4 +205,13 @@ const t = useTranslations(Astro.currentLocale || 'en');
 
   // Initialize Scroll Spy
   setupScrollSpy();
+
+  // Order Online Triggers
+  const orderBtns = [document.getElementById('order-online-btn'), document.getElementById('mobile-order-btn')];
+  orderBtns.forEach(btn => {
+    btn?.addEventListener('click', () => {
+      document.dispatchEvent(new CustomEvent('open-order-online'));
+      toggleMenu(false); // Close mobile menu if open
+    });
+  });
 </script>

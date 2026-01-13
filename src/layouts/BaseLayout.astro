@@ -9,6 +9,7 @@ import Footer from '../components/Footer.astro';
 import FloatingCTA from '../components/FloatingCTA.astro';
 import BackToTop from '../components/BackToTop.astro';
 import { NewsletterModal } from '../components/NewsletterModal';
+import { OrderOnlineModal } from '../components/OrderOnlineModal';
 
 interface Props {
   title: string;
@@ -75,6 +76,20 @@ const siteDescription = description || t('site.description');
         noThanks: t('newsletterModal.noThanks'),
         dontShowAgain: t('newsletterModal.dontShowAgain'),
         success: t('newsletterModal.success'),
+      }}
+    />
+    <OrderOnlineModal
+      client:load
+      strings={{
+        title: t('orderOnline.title'),
+        delivery: t('orderOnline.delivery'),
+        pickup: t('orderOnline.pickup'),
+        deliveryPartners: t('orderOnline.deliveryPartners'),
+        pickupTime: t('orderOnline.pickupTime'),
+        asap: t('orderOnline.asap'),
+        schedule: t('orderOnline.schedule'),
+        close: t('orderOnline.close'),
+        orderNow: t('orderOnline.orderNow'),
       }}
     />
 
