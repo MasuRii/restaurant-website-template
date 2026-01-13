@@ -213,6 +213,12 @@
     "close": "Close",
     "orderNow": "Order Now"
   },
+  "demoDisclaimer": {
+    "title": "This is a Demo Website",
+    "description": "You are viewing a sample restaurant website template. The link you clicked is a placeholder and does not lead to a real destination. This restaurant (Risū & Oak) is fictional and created for demonstration purposes only.",
+    "iUnderstand": "I Understand",
+    "dontShowAgain": "Don't show this again"
+  },
   "footer": {
     "newsletter": {
       "heading": "Join the inner circle",
