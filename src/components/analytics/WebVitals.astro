@@ -1,0 +1,22 @@
+<script>
+  import { onCLS, onFCP, onLCP, onINP, onTTFB } from 'web-vitals';
+
+  // Only run in development or if specifically enabled
+  const isDev = import.meta.env.DEV;
+
+  if (isDev) {
+    console.groupCollapsed('[Core Web Vitals]');
+    
+    function logMetric(metric) {
+      console.log(metric);
+    }
+
+    onCLS(logMetric);
+    onFCP(logMetric);
+    onLCP(logMetric);
+    onINP(logMetric);
+    onTTFB(logMetric);
+    
+    console.groupEnd();
+  }
+</script>

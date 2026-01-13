@@ -3,6 +3,7 @@ import '@fontsource/playfair-display';
 import '@fontsource/dm-sans';
 import '../styles/global.css';
 import { useTranslations } from '../lib/i18n';
+import WebVitals from '../components/analytics/WebVitals.astro';
 
 const t = useTranslations(Astro.currentLocale || 'en');
 ---
@@ -14,6 +15,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{t('site.title')}</title>
+    <WebVitals />
   </head>
   <body class="antialiased">
     <main class="max-w-4xl mx-auto p-8 space-y-8">
