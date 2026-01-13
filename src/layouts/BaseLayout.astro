@@ -12,6 +12,7 @@ import { NewsletterModal } from '../components/NewsletterModal';
 import { OrderOnlineModal } from '../components/OrderOnlineModal';
 import { DemoDisclaimerModal } from '../components/DemoDisclaimerModal';
 import SEOSchema from '../components/SEOSchema.astro';
+import PWAHandler from '../components/PWAHandler.astro';
 
 interface Props {
   title: string;
@@ -31,6 +32,12 @@ const siteDescription = description || t('site.description');
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={siteDescription} />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#faf7f2" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Risū & Oak" />
+    <link rel="apple-touch-icon" href="/images/icons/apple-icon-180.png" />
     <SEOSchema />
     <WebVitals />
     <script is:inline>
@@ -104,6 +111,7 @@ const siteDescription = description || t('site.description');
         dontShowAgain: t('demoDisclaimer.dontShowAgain'),
       }}
     />
+    <PWAHandler />
 
     <script>
       // Fade-in animation

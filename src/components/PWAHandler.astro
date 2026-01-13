@@ -1,0 +1,116 @@
+---
+import { useTranslations } from '../lib/i18n';
+
+const { currentLocale } = Astro;
+const t = useTranslations(currentLocale || 'en');
+
+// Strings for the install prompt
+const strings = {
+  installTitle: "Install Risū & Oak",
+  installDescription: "Install our app for a better experience and offline access.",
+  installButton: "Install",
+  dismissButton: "Maybe later"
+};
+---
+
+<div id="pwa-install-toast" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-96 bg-background border border-primary/10 shadow-xl rounded-lg p-4 transform translate-y-full opacity-0 transition-all duration-300 z-50 hidden">
+  <div class="flex items-start justify-between">
+    <div class="flex-1 mr-4">
+      <h3 class="font-serif text-lg font-bold text-primary mb-1">{strings.installTitle}</h3>
+      <p class="text-sm text-muted">{strings.installDescription}</p>
+    </div>
+    <button id="pwa-dismiss-btn" class="text-muted hover:text-primary transition-colors p-1" aria-label="Dismiss">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  </div>
+  <div class="mt-4 flex justify-end">
+    <button id="pwa-install-btn" class="btn-primary text-sm py-2 px-4">
+      {strings.installButton}
+    </button>
+  </div>
+</div>
+
+<script>
+  // Service Worker Registration
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('SW registered: ', registration);
+        })
+        .catch(registrationError => {
+          console.log('SW registration failed: ', registrationError);
+        });
+    });
+  }
+
+  // Install Prompt Handling
+  let deferredPrompt;
+  const toast = document.getElementById('pwa-install-toast');
+  const installBtn = document.getElementById('pwa-install-btn');
+  const dismissBtn = document.getElementById('pwa-dismiss-btn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    deferredPrompt = e;
+    
+    // Check if user has already dismissed it recently (e.g., in session storage)
+    if (sessionStorage.getItem('pwa-install-dismissed')) {
+      return;
+    }
+
+    // Show the install prompt UI
+    if (toast) {
+      toast.classList.remove('hidden');
+      // Small delay to allow display:block to apply before transition
+      setTimeout(() => {
+        toast.classList.remove('translate-y-full', 'opacity-0');
+      }, 10);
+    }
+  });
+
+  if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+      if (toast) {
+        toast.classList.add('translate-y-full', 'opacity-0');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 300);
+      }
+
+      if (deferredPrompt) {
+        // Show the install prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`User response to the install prompt: ${outcome}`);
+        deferredPrompt = null;
+      }
+    });
+  }
+
+  if (dismissBtn) {
+    dismissBtn.addEventListener('click', () => {
+      if (toast) {
+        toast.classList.add('translate-y-full', 'opacity-0');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 300);
+      }
+      sessionStorage.setItem('pwa-install-dismissed', 'true');
+    });
+  }
+
+  // App Installed Event
+  window.addEventListener('appinstalled', () => {
+    console.log('PWA was installed');
+    if (toast) {
+      toast.classList.add('hidden');
+    }
+    deferredPrompt = null;
+  });
+</script>
