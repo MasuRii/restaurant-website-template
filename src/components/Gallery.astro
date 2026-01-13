@@ -2,8 +2,41 @@
 import GalleryGrid from './GalleryGrid';
 import i18next from 'i18next';
 import galleryImages from '../data/gallery.json';
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 const { t } = i18next;
+
+// Import all gallery images from assets
+const imageFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/images/gallery/*.jpg', { eager: true });
+
+// Map JSON data to optimized images
+const optimizedImages = await Promise.all(
+  galleryImages.map(async (image) => {
+    // Extract filename from the src path in JSON (e.g. "/images/gallery/food-1.jpg" -> "food-1.jpg")
+    const filename = image.src.split('/').pop();
+    // Construct the key for imageFiles
+    const imagePath = `../assets/images/gallery/${filename}`;
+    
+    const imageMetadata = imageFiles[imagePath]?.default;
+
+    if (!imageMetadata) {
+      console.warn(`Image not found in assets: ${imagePath}`);
+      return image; // Fallback to original path if not found
+    }
+
+    const optimized = await getImage({
+      src: imageMetadata,
+      format: 'webp',
+      width: 1200, // Higher res for lightbox
+    });
+
+    return {
+      ...image,
+      src: optimized.src,
+    };
+  })
+);
 ---
 
 <section id="gallery" class="py-24 bg-alabaster relative overflow-hidden">
@@ -18,7 +51,7 @@ const { t } = i18next;
     </div>
 
     <div class="reveal-on-scroll" data-delay="200">
-      <GalleryGrid client:visible images={galleryImages} />
+      <GalleryGrid client:visible images={optimizedImages} />
     </div>
   </div>
 
