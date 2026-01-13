@@ -1,43 +1,43 @@
 [
   {
     "id": "1",
-    "src": "/images/gallery/food-1.svg",
-    "alt": "Plated heirloom tomato salad with basil foam",
+    "src": "/images/gallery/food-1.jpg",
+    "alt": "Fresh seasonal vegetable dish",
     "category": "food",
     "span": "md:col-span-1 md:row-span-1"
   },
   {
     "id": "2",
-    "src": "/images/gallery/interior-1.svg",
-    "alt": "Main dining room featuring the open hearth",
+    "src": "/images/gallery/interior-1.jpg",
+    "alt": "Chef working at the wood-fired oven",
     "category": "interior",
     "span": "md:col-span-2 md:row-span-1"
   },
   {
     "id": "3",
-    "src": "/images/gallery/food-2.svg",
-    "alt": "Wood-fired ribeye with bone marrow butter",
+    "src": "/images/gallery/food-2.jpg",
+    "alt": "Seasonal plated dessert",
     "category": "food",
     "span": "md:col-span-1 md:row-span-1"
   },
   {
     "id": "4",
-    "src": "/images/gallery/food-3.svg",
-    "alt": "Seasonal vegetable succotash",
+    "src": "/images/gallery/food-3.jpg",
+    "alt": "Artisan pastry",
     "category": "food",
     "span": "md:col-span-1 md:row-span-1"
   },
   {
     "id": "5",
-    "src": "/images/gallery/interior-2.svg",
-    "alt": "Bar area and cocktail lounge",
+    "src": "/images/gallery/interior-2.jpg",
+    "alt": "Restaurant exterior and ambiance",
     "category": "interior",
     "span": "md:col-span-1 md:row-span-1"
   },
   {
     "id": "6",
-    "src": "/images/gallery/food-4.svg",
-    "alt": "Dark chocolate tart dessert",
+    "src": "/images/gallery/food-4.jpg",
+    "alt": "Signature dessert",
     "category": "food",
     "span": "md:col-span-2 md:row-span-1"
   }
