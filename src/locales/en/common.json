@@ -20,5 +20,33 @@
     "skipToContent": "Skip to content",
     "openMenu": "Open main menu",
     "closeMenu": "Close main menu"
+  },
+  "footer": {
+    "newsletter": {
+      "heading": "Join the inner circle",
+      "placeholder": "Email address",
+      "button": "Subscribe"
+    },
+    "contact": {
+      "heading": "Contact",
+      "address": "123 Mission St, San Francisco, CA 94105",
+      "phone": "(415) 555-0123",
+      "email": "hello@risuandoak.com"
+    },
+    "hours": {
+      "heading": "Hours",
+      "weekdays": "Tue - Sun: 5pm - 10pm",
+      "happyHour": "Happy Hour: 4pm - 6pm"
+    },
+    "social": {
+      "heading": "Follow Us",
+      "instagram": "Instagram",
+      "tiktok": "TikTok"
+    },
+    "legal": {
+      "copyright": "© {{year}} Risū & Oak. All rights reserved.",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    }
   }
 }

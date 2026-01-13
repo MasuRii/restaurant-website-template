@@ -5,6 +5,7 @@ import '../styles/global.css';
 import { useTranslations } from '../lib/i18n';
 import WebVitals from '../components/analytics/WebVitals.astro';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import FloatingCTA from '../components/FloatingCTA.astro';
 
 interface Props {
@@ -59,6 +60,7 @@ const siteDescription = description || t('site.description');
       <slot />
     </main>
 
+    <Footer />
     <FloatingCTA />
   </body>
 </html>
