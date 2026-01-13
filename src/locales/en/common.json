@@ -7,6 +7,17 @@
     "title": "Seasonal Wood-Fired Dining",
     "location": "San Francisco"
   },
+  "about": {
+    "title": "Our Story",
+    "subtitle": "Established 2026",
+    "description": "Risū & Oak represents the harmony between nature's bounty and the warmth of wood-fired cooking. We source exclusively from the foggy coasts of Northern California, bringing the essence of the wild to your plate.",
+    "philosophy": "We believe in the purity of ingredients and the transformative power of fire. Every dish tells a story of the season.",
+    "chef": {
+      "name": "Chef Elena Sato",
+      "title": "Executive Chef",
+      "bio": "With over 15 years of experience in Michelin-starred kitchens across Tokyo and San Francisco, Chef Sato brings a unique Japanese-Californian perspective to wood-fired cuisine."
+    }
+  },
   "nav": {
     "home": "Home",
     "menu": "Menu",

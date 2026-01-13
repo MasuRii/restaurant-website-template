@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
 import { useTranslations } from '../lib/i18n';
 
 const t = useTranslations(Astro.currentLocale || 'en');
@@ -10,53 +11,37 @@ const t = useTranslations(Astro.currentLocale || 'en');
   <!-- Hero Section -->
   <Hero />
 
-  <div class="max-w-4xl mx-auto p-8 space-y-8">
-    <!-- Sections for Scroll Testing -->
-    <section id="story" class="min-h-screen py-20 border-t border-charcoal/10 scroll-mt-20">
-      <h2 class="text-4xl font-serif font-bold text-primary mb-6">{t('nav.story')}</h2>
-      <p class="text-lg max-w-prose text-charcoal/80 mb-8">
-        The story of Risū & Oak begins with a passion for wood-fired cooking and seasonal ingredients.
-        (Placeholder for Story Section)
-      </p>
-    </section>
+  <!-- About / Story Section -->
+  <About />
 
-    <section id="events" class="min-h-screen py-20 border-t border-charcoal/10 scroll-mt-20">
-      <h2 class="text-4xl font-serif font-bold text-primary mb-6">{t('nav.privateDining')}</h2>
-      <p class="text-lg max-w-prose text-charcoal/80 mb-8">
-        Join us for special events and private dining experiences.
-        (Placeholder for Events Section)
-      </p>
-    </section>
-
-    <section id="location" class="min-h-screen py-20 border-t border-charcoal/10 scroll-mt-20">
-      <h2 class="text-4xl font-serif font-bold text-primary mb-6">{t('nav.location')}</h2>
-      <p class="text-lg max-w-prose text-charcoal/80 mb-8">
-        742 Evergreen Terrace, San Francisco, CA 94102
-        (Placeholder for Location Section)
-      </p>
-    </section>
-
-    <section id="reservations" class="min-h-[50vh] py-20 border-t border-charcoal/10 scroll-mt-20">
-       <h2 class="text-4xl font-serif font-bold text-primary mb-6">{t('cta.reserve')}</h2>
-       <p class="text-lg max-w-prose text-charcoal/80 mb-8">
-         Book your table now.
-         (Placeholder for Reservations Section)
-       </p>
-    </section>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-charcoal/10">
-      <div class="p-6 bg-white rounded-lg shadow-sm">
-        <h2 class="text-2xl font-serif mb-2 text-accent">Typography & Color</h2>
-        <p class="text-charcoal/80">
-          This card tests the design tokens. The heading uses the <span
-            class="text-accent font-bold">Terracotta accent</span
-          >.
-        </p>
+  <!-- Temporary Placeholders for remaining sections -->
+  <div class="max-w-7xl mx-auto px-4 md:px-8 space-y-24 pb-24">
+    <section id="menu" class="min-h-[50vh] py-20 border-t border-charcoal/10 scroll-mt-20 flex items-center justify-center bg-gray-50 rounded-lg mt-24">
+      <div class="text-center">
+        <h2 class="text-4xl font-serif font-bold text-charcoal mb-6">{t('nav.menu')}</h2>
+        <p class="text-lg text-charcoal/60">Menu Component Coming Soon</p>
       </div>
-      <div class="p-6 bg-charcoal text-alabaster rounded-lg shadow-sm">
-        <h2 class="text-2xl font-serif mb-2">Dark Context</h2>
-        <p class="text-alabaster/80">Testing the reverse color scheme functionality.</p>
+    </section>
+
+    <section id="events" class="min-h-[50vh] py-20 border-t border-charcoal/10 scroll-mt-20 flex items-center justify-center bg-gray-50 rounded-lg">
+      <div class="text-center">
+        <h2 class="text-4xl font-serif font-bold text-charcoal mb-6">{t('nav.privateDining')}</h2>
+        <p class="text-lg text-charcoal/60">Events Component Coming Soon</p>
       </div>
-    </div>
+    </section>
+
+    <section id="location" class="min-h-[50vh] py-20 border-t border-charcoal/10 scroll-mt-20 flex items-center justify-center bg-gray-50 rounded-lg">
+      <div class="text-center">
+        <h2 class="text-4xl font-serif font-bold text-charcoal mb-6">{t('nav.location')}</h2>
+        <p class="text-lg text-charcoal/60">Location Component Coming Soon</p>
+      </div>
+    </section>
+
+    <section id="reservations" class="min-h-[50vh] py-20 border-t border-charcoal/10 scroll-mt-20 flex items-center justify-center bg-gray-50 rounded-lg">
+       <div class="text-center">
+        <h2 class="text-4xl font-serif font-bold text-charcoal mb-6">{t('cta.reserve')}</h2>
+        <p class="text-lg text-charcoal/60">Reservations Component Coming Soon</p>
+      </div>
+    </section>
   </div>
 </BaseLayout>
