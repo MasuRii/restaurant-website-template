@@ -6,7 +6,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
 ---
 
 <BaseLayout title={t('site.title')}>
-  <main id="main-content" class="max-w-4xl mx-auto p-8 space-y-8">
+  <div class="max-w-4xl mx-auto p-8 space-y-8">
     <div class="space-y-4">
       <h1 class="text-5xl font-serif font-bold text-primary">{t('site.title')}</h1>
       <p class="text-xl max-w-prose">{t('site.description')}</p>
@@ -39,5 +39,5 @@ const t = useTranslations(Astro.currentLocale || 'en');
         <p class="text-alabaster/80">Testing the reverse color scheme functionality.</p>
       </div>
     </div>
-  </main>
+  </div>
 </BaseLayout>
