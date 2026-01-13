@@ -1,0 +1,68 @@
+---
+import { useTranslations } from '../lib/i18n';
+import { ThemeToggle } from './ThemeToggle';
+
+const t = useTranslations(Astro.currentLocale || 'en');
+---
+
+<header id="main-header" class="sticky top-0 z-40 w-full transition-all duration-300 border-b border-transparent">
+  <div class="absolute inset-0 bg-background/0 backdrop-blur-none transition-all duration-300" id="header-bg"></div>
+  
+  <div class="container mx-auto px-4 h-20 flex items-center justify-between relative">
+    <!-- Logo -->
+    <a href="/" class="text-2xl font-serif font-bold tracking-tight z-10 hover:opacity-80 transition-opacity">
+      {t('site.title')}
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-8 z-10">
+      <a href="#story" class="text-sm font-medium hover:text-secondary transition-colors">{t('nav.story')}</a>
+      <a href="/menu" class="text-sm font-medium hover:text-secondary transition-colors">{t('nav.menu')}</a>
+      <a href="#events" class="text-sm font-medium hover:text-secondary transition-colors">{t('nav.privateDining')}</a>
+      <a href="#location" class="text-sm font-medium hover:text-secondary transition-colors">{t('nav.location')}</a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-4 z-10">
+      <ThemeToggle client:load />
+      <a 
+        href="#reservations" 
+        class="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-alabaster bg-primary hover:bg-primary/90 dark:text-primary dark:bg-alabaster dark:hover:bg-alabaster/90 rounded-sm transition-colors"
+      >
+        {t('cta.reserve')}
+      </a>
+      
+      <!-- Mobile Menu Button (Placeholder for now) -->
+      <button class="md:hidden p-2" aria-label={t('a11y.openMenu')}>
+        <span class="sr-only">Menu</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('main-header');
+  const headerBg = document.getElementById('header-bg');
+  
+  const updateHeader = () => {
+    if (window.scrollY > 20) {
+      header?.classList.remove('border-transparent');
+      header?.classList.add('border-primary/10');
+      headerBg?.classList.remove('bg-background/0', 'backdrop-blur-none');
+      headerBg?.classList.add('bg-background/80', 'backdrop-blur-md');
+    } else {
+      header?.classList.add('border-transparent');
+      header?.classList.remove('border-primary/10');
+      headerBg?.classList.add('bg-background/0', 'backdrop-blur-none');
+      headerBg?.classList.remove('bg-background/80', 'backdrop-blur-md');
+    }
+  };
+
+  window.addEventListener('scroll', updateHeader);
+  updateHeader(); // Init
+</script>

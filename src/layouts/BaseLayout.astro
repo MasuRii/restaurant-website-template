@@ -4,7 +4,7 @@ import '@fontsource/dm-sans';
 import '../styles/global.css';
 import { useTranslations } from '../lib/i18n';
 import WebVitals from '../components/analytics/WebVitals.astro';
-import { ThemeToggle } from '../components/ThemeToggle';
+import Header from '../components/Header.astro';
 
 interface Props {
   title: string;
@@ -44,7 +44,7 @@ const siteDescription = description || t('site.description');
       window.localStorage.setItem('theme', theme);
     </script>
   </head>
-  <body class="bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-white">
+  <body class="bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-white flex flex-col min-h-screen">
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-primary text-alabaster rounded-md shadow-lg"
@@ -52,10 +52,10 @@ const siteDescription = description || t('site.description');
       {t('a11y.skipToContent') || 'Skip to content'}
     </a>
 
-    <slot />
+    <Header />
 
-    <div class="fixed bottom-4 right-4 z-40 bg-background/80 backdrop-blur-sm rounded-full shadow-lg border border-primary/10">
-      <ThemeToggle client:load />
-    </div>
+    <main id="main-content" class="flex-grow">
+      <slot />
+    </main>
   </body>
 </html>

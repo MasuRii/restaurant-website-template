@@ -7,6 +7,8 @@
     "home": "Home",
     "menu": "Menu",
     "about": "Our Story",
+    "story": "Story",
+    "privateDining": "Private Dining",
     "reservations": "Reservations",
     "location": "Location"
   },
@@ -15,6 +17,8 @@
     "viewMenu": "View Menu"
   },
   "a11y": {
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "openMenu": "Open main menu",
+    "closeMenu": "Close main menu"
   }
 }
