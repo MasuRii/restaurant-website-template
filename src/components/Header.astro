@@ -32,8 +32,8 @@ const t = useTranslations(Astro.currentLocale || 'en');
         {t('cta.reserve')}
       </a>
       
-      <!-- Mobile Menu Button (Placeholder for now) -->
-      <button class="md:hidden p-2" aria-label={t('a11y.openMenu')}>
+      <!-- Mobile Menu Button -->
+      <button id="open-menu-btn" class="md:hidden p-2" aria-label={t('a11y.openMenu')} aria-expanded="false" aria-controls="mobile-menu">
         <span class="sr-only">Menu</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -43,12 +43,43 @@ const t = useTranslations(Astro.currentLocale || 'en');
       </button>
     </div>
   </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col h-[100dvh]" aria-hidden="true">
+    <div class="flex items-center justify-between p-4 border-b border-primary/10">
+      <span class="text-xl font-serif font-bold text-primary dark:text-alabaster">{t('site.title')}</span>
+      <button id="close-menu-btn" class="p-2 text-primary dark:text-alabaster" aria-label={t('a11y.closeMenu')}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <nav class="flex-1 flex flex-col justify-center items-center gap-8 p-8">
+      <a href="#story" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity">{t('nav.story')}</a>
+      <a href="/menu" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity">{t('nav.menu')}</a>
+      <a href="#events" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity">{t('nav.privateDining')}</a>
+      <a href="#location" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity">{t('nav.location')}</a>
+    </nav>
+
+    <div class="p-8 border-t border-primary/10 safe-area-bottom">
+      <a href="#reservations" class="w-full flex items-center justify-center px-6 py-4 text-lg font-medium text-alabaster bg-primary hover:bg-primary/90 dark:text-primary dark:bg-alabaster dark:hover:bg-alabaster/90 rounded-sm transition-colors">
+        {t('cta.reserve')}
+      </a>
+    </div>
+  </div>
 </header>
 
 <script>
   const header = document.getElementById('main-header');
   const headerBg = document.getElementById('header-bg');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const openBtn = document.getElementById('open-menu-btn');
+  const closeBtn = document.getElementById('close-menu-btn');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
   
+  // Scroll Effect
   const updateHeader = () => {
     if (window.scrollY > 20) {
       header?.classList.remove('border-transparent');
@@ -65,4 +96,68 @@ const t = useTranslations(Astro.currentLocale || 'en');
 
   window.addEventListener('scroll', updateHeader);
   updateHeader(); // Init
+
+  // Mobile Menu Logic
+  const toggleMenu = (show: boolean) => {
+    if (!mobileMenu || !openBtn) return;
+
+    if (show) {
+      mobileMenu.classList.remove('translate-x-full');
+      mobileMenu.classList.add('translate-x-0');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      openBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      // Focus management: move focus to close button
+      (closeBtn as HTMLElement)?.focus();
+    } else {
+      mobileMenu.classList.add('translate-x-full');
+      mobileMenu.classList.remove('translate-x-0');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      openBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      // Return focus to open button
+      openBtn.focus();
+    }
+  };
+
+  openBtn?.addEventListener('click', () => toggleMenu(true));
+  closeBtn?.addEventListener('click', () => toggleMenu(false));
+
+  // Close menu when clicking a link
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => toggleMenu(false));
+  });
+
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    if (!mobileMenu?.classList.contains('translate-x-0')) return;
+
+    if (e.key === 'Escape') {
+      toggleMenu(false);
+      return;
+    }
+
+    // Focus Trap
+    if (e.key === 'Tab') {
+      const focusableElements = mobileMenu.querySelectorAll(
+        'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+      );
+      if (!focusableElements || focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0] as HTMLElement;
+      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+      if (e.shiftKey) { /* shift + tab */
+        if (document.activeElement === firstElement) {
+          lastElement.focus();
+          e.preventDefault();
+        }
+      } else { /* tab */
+        if (document.activeElement === lastElement) {
+          firstElement.focus();
+          e.preventDefault();
+        }
+      }
+    }
+  });
 </script>
