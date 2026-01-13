@@ -125,6 +125,10 @@
       ]
     }
   },
+  "gallery": {
+    "title": "Visual Proof",
+    "description": "Immerse yourself in the atmosphere of Risū & Oak, where rustic meets refined."
+  },
   "nav": {
     "home": "Home",
     "menu": "Menu",

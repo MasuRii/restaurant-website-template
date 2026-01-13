@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import Menu from '../components/Menu.astro';
+import Gallery from '../components/Gallery.astro';
 import { useTranslations } from '../lib/i18n';
 
 const t = useTranslations(Astro.currentLocale || 'en');
@@ -17,6 +18,9 @@ const t = useTranslations(Astro.currentLocale || 'en');
 
   <!-- Menu Section -->
   <Menu />
+
+  <!-- Gallery Section -->
+  <Gallery />
 
   <!-- Temporary Placeholders for remaining sections -->
   <div class="max-w-7xl mx-auto px-4 md:px-8 space-y-24 pb-24">
