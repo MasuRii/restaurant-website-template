@@ -1,0 +1,93 @@
+---
+import { useTranslations } from '../lib/i18n';
+import OptimizedImage from './ui/OptimizedImage.astro';
+import heroBg from '../assets/hero-bg.svg';
+
+const t = useTranslations(Astro.currentLocale || 'en');
+---
+
+<section id="hero" class="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden">
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0 z-0">
+    <OptimizedImage
+      src={heroBg}
+      alt="Risū & Oak Interior"
+      class="w-full h-full object-cover"
+      loading="eager"
+      sizes="100vw"
+    />
+    <div class="absolute inset-0 bg-black/40 z-10"></div>
+  </div>
+
+  <!-- Video Background Placeholder (Hidden/Commented) -->
+  <!-- 
+  <video 
+    class="absolute inset-0 w-full h-full object-cover z-0 opacity-0 transition-opacity duration-1000"
+    autoplay 
+    muted 
+    loop 
+    playsinline
+    poster="/hero-poster.jpg"
+  >
+    <source src="/hero-video.mp4" type="video/mp4" />
+  </video>
+  -->
+
+  <!-- Content -->
+  <div class="relative z-20 text-center px-4 max-w-4xl mx-auto space-y-8 animate-fade-in-up">
+    <div class="space-y-4">
+      <p class="text-xl md:text-2xl font-sans text-alabaster/90 tracking-widest uppercase">
+        {t('hero.location') || 'San Francisco'}
+      </p>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-alabaster leading-tight">
+        {t('hero.title') || 'Seasonal Wood-Fired Dining'}
+      </h1>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+      <a
+        href="#reservations"
+        class="px-8 py-4 bg-terracotta text-alabaster rounded-full font-medium text-lg hover:bg-terracotta/90 hover:-translate-y-0.5 transition-all shadow-lg cursor-pointer min-w-[200px]"
+      >
+        {t('cta.reserve')}
+      </a>
+      <a
+        href="#menu"
+        class="px-8 py-4 border-2 border-alabaster text-alabaster rounded-full font-medium text-lg hover:bg-alabaster hover:text-charcoal transition-all cursor-pointer min-w-[200px]"
+      >
+        {t('cta.viewMenu')}
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      class="h-8 w-8 text-alabaster/80" 
+      fill="none" 
+      viewBox="0 0 24 24" 
+      stroke="currentColor"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>
+
+<style>
+  /* Simple fade-in animation */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
+</style>

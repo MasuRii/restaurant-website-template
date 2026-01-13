@@ -3,6 +3,10 @@
     "title": "Risū & Oak",
     "description": "Seasonal wood-fired dining in San Francisco"
   },
+  "hero": {
+    "title": "Seasonal Wood-Fired Dining",
+    "location": "San Francisco"
+  },
   "nav": {
     "home": "Home",
     "menu": "Menu",

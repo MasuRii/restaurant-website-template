@@ -1,33 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
 import { useTranslations } from '../lib/i18n';
 
 const t = useTranslations(Astro.currentLocale || 'en');
 ---
 
 <BaseLayout title={t('site.title')}>
+  <!-- Hero Section -->
+  <Hero />
+
   <div class="max-w-4xl mx-auto p-8 space-y-8">
-    <!-- Hero Section -->
-    <section id="hero" class="min-h-[80vh] flex flex-col justify-center space-y-8">
-      <div class="space-y-4">
-        <h1 class="text-5xl font-serif font-bold text-primary">{t('site.title')}</h1>
-        <p class="text-xl max-w-prose">{t('site.description')}</p>
-      </div>
-
-      <div class="flex gap-4">
-        <button
-          class="px-6 py-3 bg-primary text-alabaster rounded-full font-medium hover:-translate-y-0.5 transition-transform shadow-sm cursor-pointer"
-        >
-          {t('cta.reserve')}
-        </button>
-        <button
-          class="px-6 py-3 border border-primary text-primary rounded-full font-medium hover:bg-primary/5 transition-colors cursor-pointer"
-        >
-          {t('cta.viewMenu')}
-        </button>
-      </div>
-    </section>
-
     <!-- Sections for Scroll Testing -->
     <section id="story" class="min-h-screen py-20 border-t border-charcoal/10 scroll-mt-20">
       <h2 class="text-4xl font-serif font-bold text-primary mb-6">{t('nav.story')}</h2>
