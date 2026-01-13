@@ -110,44 +110,4 @@ const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURICompo
       </div>
     </div>
   </div>
-
-  <!-- Schema.org LocalBusiness JSON-LD -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Restaurant",
-    "name": "Risū & Oak",
-    "image": "https://risuandoak.com/images/hero.jpg", 
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "123 Mission St",
-      "addressLocality": "San Francisco",
-      "addressRegion": "CA",
-      "postalCode": "94105",
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "url": "https://risuandoak.com",
-    "telephone": locationData.contact.phone,
-    "priceRange": "$$$",
-    "servesCuisine": "Contemporary American",
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "17:00",
-        "closes": "22:00"
-      }
-    ]
-  })} />
 </section>

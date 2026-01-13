@@ -11,6 +11,7 @@ import BackToTop from '../components/BackToTop.astro';
 import { NewsletterModal } from '../components/NewsletterModal';
 import { OrderOnlineModal } from '../components/OrderOnlineModal';
 import { DemoDisclaimerModal } from '../components/DemoDisclaimerModal';
+import SEOSchema from '../components/SEOSchema.astro';
 
 interface Props {
   title: string;
@@ -30,6 +31,7 @@ const siteDescription = description || t('site.description');
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={siteDescription} />
+    <SEOSchema />
     <WebVitals />
     <script is:inline>
       const getTheme = () => {

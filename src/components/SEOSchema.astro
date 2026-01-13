@@ -1,0 +1,106 @@
+---
+import restaurant from '../data/restaurant.json';
+import menu from '../data/menu.json';
+
+const siteUrl = Astro.site?.toString() || Astro.url.origin;
+
+// Helper to map dietary tags to Schema.org URLs
+const getDietaryRestrictedDiet = (tag: string) => {
+  const map: Record<string, string> = {
+    'v': 'https://schema.org/VegetarianDiet',
+    'gf': 'https://schema.org/GlutenFreeDiet',
+    'vg': 'https://schema.org/VeganDiet'
+  };
+  return map[tag] || null;
+};
+
+// Helper to parse time string (e.g., "5:00 PM") to 24h format (e.g., "17:00")
+const parseTime = (timeStr: string) => {
+  const [time, modifier] = timeStr.split(' ');
+  let [hours, minutes] = time.split(':');
+  if (hours === '12') {
+    hours = '00';
+  }
+  if (modifier === 'PM') {
+    hours = (parseInt(hours, 10) + 12).toString();
+  }
+  return `${hours}:${minutes}`;
+};
+
+// Parse hours from data
+// Assuming format "5:00 PM - 10:00 PM"
+const [opensTime, closesTime] = restaurant.hours.time.split(' - ').map(t => parseTime(t));
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": `${siteUrl}/#restaurant`,
+  "name": restaurant.name.default,
+  "description": restaurant.description.default,
+  "image": new URL('/images/hero.jpg', siteUrl).toString(),
+  "url": siteUrl,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": restaurant.address.street,
+    "addressLocality": restaurant.address.city,
+    "addressRegion": restaurant.address.state,
+    "postalCode": restaurant.address.zip,
+    "addressCountry": restaurant.address.country
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": restaurant.geo.latitude,
+    "longitude": restaurant.geo.longitude
+  },
+  "telephone": restaurant.contact.phone,
+  "email": restaurant.contact.email,
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "https://schema.org/Tuesday",
+        "https://schema.org/Wednesday",
+        "https://schema.org/Thursday",
+        "https://schema.org/Friday",
+        "https://schema.org/Saturday",
+        "https://schema.org/Sunday"
+      ],
+      "opens": opensTime || "17:00",
+      "closes": closesTime || "22:00"
+    }
+  ],
+  "priceRange": restaurant.priceRange,
+  "servesCuisine": restaurant.cuisine,
+  "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
+  "acceptsReservations": `${siteUrl}/#reservations`,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127"
+  },
+  "hasMenu": {
+    "@type": "Menu",
+    "name": "Main Menu",
+    "url": `${siteUrl}/#menu`,
+    "hasMenuSection": menu.categories.map(cat => ({
+      "@type": "MenuSection",
+      "name": cat.name.default,
+      "hasMenuItem": cat.items.map(item => ({
+        "@type": "MenuItem",
+        "name": item.name.default,
+        "description": item.description.default,
+        "image": item.image ? new URL(item.image, siteUrl).toString() : undefined,
+        "offers": {
+          "@type": "Offer",
+          "price": item.price,
+          "priceCurrency": item.currency
+        },
+        "suitableForDiet": item.dietaryTags?.map(getDietaryRestrictedDiet).filter(Boolean)
+      }))
+    }))
+  },
+  "sameAs": Object.values(restaurant.social)
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
