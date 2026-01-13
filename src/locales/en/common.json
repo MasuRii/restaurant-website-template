@@ -198,7 +198,7 @@
     "description": "Join our newsletter for exclusive chef's table invites and seasonal menu previews.",
     "emailPlaceholder": "Your email address",
     "submit": "Subscribe",
-    "noThanks": "No thanks, I prefer to pay full price",
+    "noThanks": "No thanks",
     "dontShowAgain": "Don't show this again",
     "success": "Thank you! You're on the list."
   },

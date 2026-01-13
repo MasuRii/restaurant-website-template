@@ -2,42 +2,42 @@
   {
     "id": "1",
     "src": "/images/gallery/food-1.jpg",
-    "alt": "Fresh seasonal vegetable dish",
+    "alt": "Heirloom carrots with whipped feta and za'atar plated on rustic ceramic dish at Risū & Oak",
     "category": "food",
     "span": "md:col-span-1 md:row-span-1"
   },
   {
     "id": "2",
     "src": "/images/gallery/interior-1.jpg",
-    "alt": "Chef working at the wood-fired oven",
+    "alt": "Executive Chef Elena Sato working at the open wood-fired hearth at Risū & Oak",
     "category": "interior",
     "span": "md:col-span-2 md:row-span-1"
   },
   {
     "id": "3",
     "src": "/images/gallery/food-2.jpg",
-    "alt": "Seasonal plated dessert",
+    "alt": "Dark Chocolate Tart with sea salt and crème fraîche plated on matte black stoneware at Risū & Oak",
     "category": "food",
     "span": "md:col-span-1 md:row-span-1"
   },
   {
     "id": "4",
     "src": "/images/gallery/food-3.jpg",
-    "alt": "Artisan pastry",
+    "alt": "Wood-fired ribeye steak with bone marrow butter plated on white porcelain at Risū & Oak",
     "category": "food",
     "span": "md:col-span-1 md:row-span-1"
   },
   {
     "id": "5",
     "src": "/images/gallery/interior-2.jpg",
-    "alt": "Restaurant exterior and ambiance",
+    "alt": "Risū & Oak dining room interior featuring warm wood accents, soft lighting, and modern furniture",
     "category": "interior",
     "span": "md:col-span-1 md:row-span-1"
   },
   {
     "id": "6",
     "src": "/images/gallery/food-4.jpg",
-    "alt": "Signature dessert",
+    "alt": "Burnt Basque Cheesecake with seasonal fruit compote plated on handmade ceramic plate at Risū & Oak",
     "category": "food",
     "span": "md:col-span-2 md:row-span-1"
   }
