@@ -16,10 +16,10 @@ const t = useTranslations(Astro.currentLocale || 'en');
 
     <!-- Desktop Nav -->
     <nav class="hidden md:flex items-center gap-8 z-10">
-      <a href="#story" class="text-sm font-medium hover:text-secondary transition-colors">{t('nav.story')}</a>
+      <a href="#story" class="desktop-nav-link text-sm font-medium hover:text-secondary transition-colors">{t('nav.story')}</a>
       <a href="/menu" class="text-sm font-medium hover:text-secondary transition-colors">{t('nav.menu')}</a>
-      <a href="#events" class="text-sm font-medium hover:text-secondary transition-colors">{t('nav.privateDining')}</a>
-      <a href="#location" class="text-sm font-medium hover:text-secondary transition-colors">{t('nav.location')}</a>
+      <a href="#events" class="desktop-nav-link text-sm font-medium hover:text-secondary transition-colors">{t('nav.privateDining')}</a>
+      <a href="#location" class="desktop-nav-link text-sm font-medium hover:text-secondary transition-colors">{t('nav.location')}</a>
     </nav>
 
     <!-- Actions -->
@@ -160,4 +160,42 @@ const t = useTranslations(Astro.currentLocale || 'en');
       }
     }
   });
+
+  // Scroll Spy / Active Link Highlighting
+  const setupScrollSpy = () => {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.desktop-nav-link');
+
+    if (sections.length === 0 || navLinks.length === 0) return;
+
+    const observerOptions = {
+      rootMargin: '-20% 0px -60% 0px', // Active when section is in the upper part of viewport
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Remove active state from all links
+          navLinks.forEach(link => {
+            link.classList.remove('text-secondary', 'font-bold');
+            link.classList.add('font-medium');
+          });
+
+          // Add active state to current link
+          const id = entry.target.getAttribute('id');
+          const activeLink = document.querySelector(`.desktop-nav-link[href="#${id}"]`);
+          if (activeLink) {
+            activeLink.classList.remove('font-medium');
+            activeLink.classList.add('text-secondary', 'font-bold');
+          }
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+  };
+
+  // Initialize Scroll Spy
+  setupScrollSpy();
 </script>

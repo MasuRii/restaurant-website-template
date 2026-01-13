@@ -54,6 +54,8 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     transition: background-color 0.3s ease, color 0.3s ease;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem; /* Match header height (h-20 = 5rem) */
   }
 
   h1,
