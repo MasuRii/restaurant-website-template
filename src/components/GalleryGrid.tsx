@@ -13,16 +13,69 @@ interface GalleryGridProps {
 
 export default function GalleryGrid({ images }: GalleryGridProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
+  
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
+
+  // Handle body scroll locking
+  useEffect(() => {
+    if (selectedImageIndex !== null) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImageIndex]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null); // Reset touch end
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      // Swipe left -> Next image
+      if (selectedImageIndex !== null) {
+        setSelectedImageIndex((prev) => (prev !== null && prev < images.length - 1 ? prev + 1 : 0));
+      }
+    }
+    
+    if (isRightSwipe) {
+      // Swipe right -> Prev image
+      if (selectedImageIndex !== null) {
+        setSelectedImageIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : images.length - 1));
+      }
+    }
+  };
 
   const openModal = (index: number) => {
     setSelectedImageIndex(index);
-    document.body.style.overflow = 'hidden'; // Prevent scrolling
   };
 
   const closeModal = () => {
     setSelectedImageIndex(null);
-    document.body.style.overflow = 'unset';
+  };
+  
+  const handleModalClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
   };
 
   const nextImage = (e: React.MouseEvent) => {
@@ -87,13 +140,19 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
 
       {/* Lightbox Modal */}
       {selectedImageIndex !== null && (
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
         <div 
           className="fixed inset-0 z-50 bg-charcoal/95 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={closeModal}
+          onClick={handleModalClick}
           ref={modalRef}
           role="dialog"
           aria-modal="true"
           aria-label="Image gallery lightbox"
+          tabIndex={-1}
+          onKeyDown={(e) => e.key === 'Escape' && closeModal()}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
         >
           <button 
             className="absolute top-4 right-4 text-alabaster/60 hover:text-alabaster p-2 transition-colors z-50 focus:outline-none focus:ring-2 focus:ring-alabaster/50 rounded-full"
@@ -116,9 +175,9 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
             </svg>
           </button>
 
-          <div className="max-w-5xl max-h-[85vh] relative" onClick={(e) => e.stopPropagation()}>
+          <div className="max-w-5xl max-h-[85vh] relative">
             <img 
-              src={images[selectedImageIndex].src} 
+              src={images[selectedImageIndex].src}  
               alt={images[selectedImageIndex].alt} 
               className="max-w-full max-h-[80vh] object-contain shadow-2xl rounded-sm"
             />
