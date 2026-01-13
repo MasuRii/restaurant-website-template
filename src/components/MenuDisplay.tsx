@@ -91,10 +91,14 @@ export default function MenuDisplay({ data }: MenuDisplayProps) {
 
         {/* Items Grid */}
         <div className="flex-1 min-h-[400px]">
-          <div key={activeCategory} className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
+          <div key={activeCategory} className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
             {filteredItems.length > 0 ? (
               filteredItems.map((item, index) => (
-                <div key={index} className="group relative">
+                <div 
+                  key={index} 
+                  className="group relative opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
                   <div className="flex justify-between items-baseline mb-3 border-b border-charcoal/10 pb-2 border-dashed">
                     <h3 className="text-xl font-serif text-charcoal group-hover:text-amber-900 transition-colors duration-300">
                       {item.name}

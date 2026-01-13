@@ -36,12 +36,12 @@ const reviewsSchema = {
 
 <section id="testimonials" class="py-24 md:py-32 bg-stone-50 text-charcoal relative scroll-mt-20">
   <div class="max-w-7xl mx-auto px-4 md:px-8">
-    <div class="text-center mb-16 md:mb-24">
+    <div class="text-center mb-16 md:mb-24 reveal-on-scroll">
       <span class="text-xs font-sans uppercase tracking-[0.2em] text-charcoal/60 mb-4 block">Acclaim</span>
       <h2 class="text-4xl md:text-5xl font-serif font-medium">{t('testimonials.title')}</h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 reveal-on-scroll" data-delay="200">
       {testimonials.slice(0, 3).map((review) => (
         <blockquote class="flex flex-col h-full p-8 bg-white rounded-sm shadow-sm border border-stone-100">
           <div class="mb-6 text-amber-900/80 text-sm tracking-widest" aria-label={`Rating: ${review.rating} out of 5 stars`}>

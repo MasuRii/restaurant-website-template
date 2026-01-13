@@ -14,7 +14,7 @@ const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURICompo
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
       
       <!-- Map Side -->
-      <div class="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square bg-stone-200 rounded-lg overflow-hidden shadow-lg group">
+      <div class="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square bg-stone-200 rounded-lg overflow-hidden shadow-lg group reveal-on-scroll">
         <!-- Static Map Placeholder (In a real app, use a static map image API here) -->
         <div class="absolute inset-0 bg-stone-300 flex items-center justify-center">
             <span class="text-charcoal/40 font-serif italic text-lg">Interactive Map Loading...</span>
@@ -35,7 +35,7 @@ const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURICompo
       </div>
 
       <!-- Info Side -->
-      <div class="space-y-12 py-4">
+      <div class="space-y-12 py-4 reveal-on-scroll" data-delay="200">
         <!-- Heading -->
         <div class="space-y-4">
           <span class="text-terracotta uppercase tracking-widest text-sm font-medium">

@@ -13,7 +13,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
     <!-- Story Block -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
       <!-- Text Side -->
-      <div class="space-y-8 md:pr-8 animate-on-scroll">
+      <div class="space-y-8 md:pr-8 reveal-on-scroll">
         <div class="space-y-2">
           <span class="text-terracotta uppercase tracking-widest text-sm font-medium">
             {t('about.subtitle')}
@@ -33,7 +33,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
       </div>
 
       <!-- Image Side -->
-      <div class="relative h-[500px] w-full rounded-lg overflow-hidden shadow-xl md:translate-y-8 animate-on-scroll">
+      <div class="relative h-[500px] w-full rounded-lg overflow-hidden shadow-xl md:translate-y-8 reveal-on-scroll" data-delay="200">
         <OptimizedImage
           src={interiorImg}
           alt="Restaurant Interior"
@@ -45,7 +45,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
     <!-- Chef Block -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center md:flex-row-reverse">
       <!-- Image Side (Left on Desktop) -->
-      <div class="relative h-[600px] w-full rounded-lg overflow-hidden shadow-xl md:-translate-y-8 order-2 md:order-1 animate-on-scroll">
+      <div class="relative h-[600px] w-full rounded-lg overflow-hidden shadow-xl md:-translate-y-8 order-2 md:order-1 reveal-on-scroll">
         <OptimizedImage
           src={chefImg}
           alt={t('about.chef.name')}
@@ -54,7 +54,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
       </div>
 
       <!-- Text Side (Right on Desktop) -->
-      <div class="space-y-8 md:pl-8 order-1 md:order-2 animate-on-scroll">
+      <div class="space-y-8 md:pl-8 order-1 md:order-2 reveal-on-scroll" data-delay="200">
         <div class="space-y-2">
           <span class="text-terracotta uppercase tracking-widest text-sm font-medium">
             {t('about.chef.title')}
@@ -73,37 +73,3 @@ const t = useTranslations(Astro.currentLocale || 'en');
 
   </div>
 </section>
-
-<script>
-  // Simple intersection observer for scroll animations
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.15
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('opacity-100', 'translate-y-0');
-        entry.target.classList.remove('opacity-0', 'translate-y-10');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.addEventListener('astro:page-load', () => {
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach(el => {
-      el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700', 'ease-out');
-      observer.observe(el);
-    });
-  });
-  
-  // Also run on initial load if not using ViewTransitions or for first paint
-  const elements = document.querySelectorAll('.animate-on-scroll');
-  elements.forEach(el => {
-    el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700', 'ease-out');
-    observer.observe(el);
-  });
-</script>

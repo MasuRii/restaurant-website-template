@@ -46,7 +46,7 @@ const { t } = i18next;
 
 <section id="gallery" className="py-24 bg-alabaster relative overflow-hidden">
   <div className="container mx-auto px-4 md:px-8">
-    <div className="max-w-3xl mx-auto text-center mb-16 opacity-0 animate-[fadeIn_0.8s_ease-out_forwards_0.2s]">
+    <div className="max-w-3xl mx-auto text-center mb-16 reveal-on-scroll">
       <h2 className="text-4xl md:text-5xl font-serif text-charcoal mb-6">
         {t('gallery.title', 'Visual Proof')}
       </h2>
@@ -55,7 +55,9 @@ const { t } = i18next;
       </p>
     </div>
 
-    <GalleryGrid client:visible images={images} />
+    <div class="reveal-on-scroll" data-delay="200">
+      <GalleryGrid client:visible images={images} />
+    </div>
   </div>
 
   {/* Decorative elements */}

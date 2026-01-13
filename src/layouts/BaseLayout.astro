@@ -62,5 +62,60 @@ const siteDescription = description || t('site.description');
 
     <Footer />
     <FloatingCTA />
+
+    <script>
+      // Fade-in animation
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Add delay if specified
+            const delay = entry.target.getAttribute('data-delay');
+            if (delay) {
+              entry.target.style.transitionDelay = `${delay}ms`;
+            }
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        revealElements.forEach((el) => {
+          observer.observe(el);
+        });
+
+        // Parallax animation (Parallax Effect)
+        // Only apply if not reduced motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (!prefersReducedMotion) {
+          const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
+          
+          if (parallaxElements.length > 0) {
+            window.addEventListener('scroll', () => {
+              const scrolled = window.scrollY;
+              parallaxElements.forEach(el => {
+                // Check if element is in viewport to avoid unnecessary calcs
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                   const speed = parseFloat(el.getAttribute('data-parallax-speed') || '0.5');
+                   // We limit the offset to avoid elements flying off too far
+                   const offset = scrolled * speed;
+                   // Use translate3d for hardware acceleration
+                   el.style.transform = `translate3d(0, ${offset}px, 0)`;
+                }
+              });
+            }, { passive: true });
+          }
+        }
+      });
+    </script>
   </body>
 </html>
