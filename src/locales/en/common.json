@@ -13,5 +13,8 @@
   "cta": {
     "reserve": "Reserve a Table",
     "viewMenu": "View Menu"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content"
   }
 }

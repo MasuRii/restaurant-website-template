@@ -1,56 +1,43 @@
 ---
-import '@fontsource/playfair-display';
-import '@fontsource/dm-sans';
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import { useTranslations } from '../lib/i18n';
-import WebVitals from '../components/analytics/WebVitals.astro';
 
 const t = useTranslations(Astro.currentLocale || 'en');
 ---
 
-<html lang={Astro.currentLocale || 'en'}>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{t('site.title')}</title>
-    <WebVitals />
-  </head>
-  <body class="antialiased">
-    <main class="max-w-4xl mx-auto p-8 space-y-8">
-      <div class="space-y-4">
-        <h1 class="text-5xl font-serif font-bold text-primary">{t('site.title')}</h1>
-        <p class="text-xl max-w-prose">{t('site.description')}</p>
-      </div>
+<BaseLayout title={t('site.title')}>
+  <main id="main-content" class="max-w-4xl mx-auto p-8 space-y-8">
+    <div class="space-y-4">
+      <h1 class="text-5xl font-serif font-bold text-primary">{t('site.title')}</h1>
+      <p class="text-xl max-w-prose">{t('site.description')}</p>
+    </div>
 
-      <div class="flex gap-4">
-        <button
-          class="px-6 py-3 bg-primary text-alabaster rounded-full font-medium hover:-translate-y-0.5 transition-transform shadow-sm"
-        >
-          {t('cta.reserve')}
-        </button>
-        <button
-          class="px-6 py-3 border border-primary text-primary rounded-full font-medium hover:bg-primary/5 transition-colors"
-        >
-          {t('cta.viewMenu')}
-        </button>
-      </div>
+    <div class="flex gap-4">
+      <button
+        class="px-6 py-3 bg-primary text-alabaster rounded-full font-medium hover:-translate-y-0.5 transition-transform shadow-sm cursor-pointer"
+      >
+        {t('cta.reserve')}
+      </button>
+      <button
+        class="px-6 py-3 border border-primary text-primary rounded-full font-medium hover:bg-primary/5 transition-colors cursor-pointer"
+      >
+        {t('cta.viewMenu')}
+      </button>
+    </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-charcoal/10">
-        <div class="p-6 bg-white rounded-lg shadow-sm">
-          <h2 class="text-2xl font-serif mb-2 text-accent">Typography & Color</h2>
-          <p class="text-charcoal/80">
-            This card tests the design tokens. The heading uses the <span
-              class="text-accent font-bold">Terracotta accent</span
-            >.
-          </p>
-        </div>
-        <div class="p-6 bg-charcoal text-alabaster rounded-lg shadow-sm">
-          <h2 class="text-2xl font-serif mb-2">Dark Context</h2>
-          <p class="text-alabaster/80">Testing the reverse color scheme functionality.</p>
-        </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-charcoal/10">
+      <div class="p-6 bg-white rounded-lg shadow-sm">
+        <h2 class="text-2xl font-serif mb-2 text-accent">Typography & Color</h2>
+        <p class="text-charcoal/80">
+          This card tests the design tokens. The heading uses the <span
+            class="text-accent font-bold">Terracotta accent</span
+          >.
+        </p>
       </div>
-    </main>
-  </body>
-</html>
+      <div class="p-6 bg-charcoal text-alabaster rounded-lg shadow-sm">
+        <h2 class="text-2xl font-serif mb-2">Dark Context</h2>
+        <p class="text-alabaster/80">Testing the reverse color scheme functionality.</p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

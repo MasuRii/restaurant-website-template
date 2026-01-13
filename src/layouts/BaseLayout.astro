@@ -1,0 +1,38 @@
+---
+import '@fontsource/playfair-display';
+import '@fontsource/dm-sans';
+import '../styles/global.css';
+import { useTranslations } from '../lib/i18n';
+import WebVitals from '../components/analytics/WebVitals.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const t = useTranslations(Astro.currentLocale || 'en');
+const siteDescription = description || t('site.description');
+---
+
+<html lang={Astro.currentLocale || 'en'} class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={siteDescription} />
+    <WebVitals />
+  </head>
+  <body class="bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-white">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-primary text-alabaster rounded-md shadow-lg"
+    >
+      {t('a11y.skipToContent') || 'Skip to content'}
+    </a>
+
+    <slot />
+  </body>
+</html>
