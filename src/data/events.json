@@ -1,0 +1,30 @@
+[
+  {
+    "id": "weekly-specials",
+    "name": "Weekly Specials",
+    "description": "Experience our rotating selection of seasonal dishes, featuring the freshest ingredients from the market.",
+    "type": "special",
+    "recurrence": "Every Week",
+    "image": "/images/gallery/food-1.jpg"
+  },
+  {
+    "id": "chefs-table",
+    "name": "Chef's Table Series",
+    "description": "An intimate 7-course tasting menu served at the kitchen counter, personally guided by Chef Elena Sato.",
+    "type": "event",
+    "date": "2026-06-15T19:00",
+    "price": "$185",
+    "image": "/images/chef.jpg",
+    "url": "#reservations"
+  },
+  {
+    "id": "winemaker-dinner",
+    "name": "Sonoma Winemaker Dinner",
+    "description": "Join us for an exclusive evening featuring a vertical tasting of Pinot Noir paired with a 5-course menu.",
+    "type": "event",
+    "date": "2026-07-10T18:30",
+    "price": "$220",
+    "image": "/images/gallery/interior-1.jpg",
+    "url": "#reservations"
+  }
+]

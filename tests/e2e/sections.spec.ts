@@ -80,4 +80,25 @@ test.describe('Sections', () => {
     expect(schema['@graph']).toBeDefined();
     expect(schema['@graph'][0]['@type']).toBe('Review');
   });
+
+  test('events section loads and has schema', async ({ page }) => {
+    const section = page.locator('#events');
+    await expect(section).toBeVisible();
+
+    // Check for event cards
+    const cards = section.locator('article');
+    // We expect at least 3 cards (2 events + 1 weekly + 1 private dining)
+    await expect(cards).toHaveCount(4); 
+
+    // Check schema
+    const schemaScript = section.locator('script[type="application/ld+json"]');
+    await expect(schemaScript).toHaveCount(1);
+    
+    const schemaContent = await schemaScript.textContent();
+    const schema = JSON.parse(schemaContent!);
+    expect(schema['@graph']).toBeDefined();
+    // Only 'event' type items are in schema
+    expect(schema['@graph'][0]['@type']).toBe('Event');
+    expect(schema['@graph'][0]['location']).toBeDefined();
+  });
 });

@@ -168,6 +168,12 @@
       "happyHour": "Happy Hour: 4:00 PM - 6:00 PM"
     }
   },
+  "events": {
+    "title": "Events & Specials",
+    "subtitle": "Join Us",
+    "description": "From intimate chef's tables to lively winemaker dinners, experience Risū & Oak in a new light.",
+    "cta": "Inquire Now"
+  },
   "nav": {
     "home": "Home",
     "menu": "Menu",
