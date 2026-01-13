@@ -18,6 +18,113 @@
       "bio": "With over 15 years of experience in Michelin-starred kitchens across Tokyo and San Francisco, Chef Sato brings a unique Japanese-Californian perspective to wood-fired cuisine."
     }
   },
+  "menu": {
+    "title": "Our Menus",
+    "filters": {
+      "v": "Vegetarian",
+      "gf": "Gluten Free"
+    },
+    "categories": {
+      "dinner": "Dinner",
+      "wine": "Wine List",
+      "cocktails": "Cocktails",
+      "dessert": "Dessert"
+    },
+    "items": {
+      "dinner": [
+        {
+          "name": "Charred Octopus",
+          "price": "$24",
+          "description": "Romesco, burned lemon, chili oil",
+          "dietary": ["gf"]
+        },
+        {
+          "name": "Heirloom Carrots",
+          "price": "$16",
+          "description": "Whipped feta, honey, za'atar, mint",
+          "dietary": ["v", "gf"]
+        },
+        {
+          "name": "Wood-Fired Ribeye",
+          "price": "$65",
+          "description": "Bone marrow butter, frites, rosemary",
+          "dietary": ["gf"]
+        },
+        {
+          "name": "Market Fish",
+          "price": "$42",
+          "description": "Seasonal succotash, beurre blanc, fennel",
+          "dietary": ["gf"]
+        },
+        {
+          "name": "Wild Mushroom Risotto",
+          "price": "$32",
+          "description": "Porcini, parmesan, truffle oil, thyme",
+          "dietary": ["v", "gf"]
+        },
+        {
+          "name": "Roasted Duck Breast",
+          "price": "$38",
+          "description": "Blackberry gastrique, parsnip puree, kale",
+          "dietary": ["gf"]
+        }
+      ],
+      "wine": [
+        {
+          "name": "Pinot Noir, Russian River",
+          "price": "$18 / $72",
+          "description": "Notes of cherry, cola, and forest floor. 2023.",
+          "dietary": ["v", "gf"]
+        },
+        {
+          "name": "Chardonnay, Sonoma Coast",
+          "price": "$16 / $64",
+          "description": "Crisp apple, lemon curd, subtle oak. 2024.",
+          "dietary": ["v", "gf"]
+        },
+        {
+          "name": "Cabernet Sauvignon, Napa",
+          "price": "$22 / $88",
+          "description": "Black currant, tobacco, cedar. 2021.",
+          "dietary": ["v", "gf"]
+        }
+      ],
+      "cocktails": [
+        {
+          "name": "The Fog Belt",
+          "price": "$16",
+          "description": "Gin, sage, lime, egg white, fog mist",
+          "dietary": ["v", "gf"]
+        },
+        {
+          "name": "Smoked Old Fashioned",
+          "price": "$18",
+          "description": "Bourbon, maple, walnut bitters, hickory smoke",
+          "dietary": ["v", "gf"]
+        },
+        {
+          "name": "Spicy Mezcalita",
+          "price": "$17",
+          "description": "Mezcal, grilled pineapple, jalapeño, agave",
+          "dietary": ["v", "gf"]
+        }
+      ],
+      "dessert": [
+        {
+          "name": "Dark Chocolate Tart",
+          "price": "$14",
+          "description": "Sea salt, olive oil, whipped crème fraîche",
+          "dietary": ["v"]
+        },
+        {
+          "name": "Burnt Basque Cheesecake",
+          "price": "$12",
+          "description": "Seasonal fruit compote",
+          "dietary": ["v", "gf"]
+        }
+      ]
+    }
+  },
   "nav": {
     "home": "Home",
     "menu": "Menu",
