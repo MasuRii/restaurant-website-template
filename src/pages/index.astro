@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import Menu from '../components/Menu.astro';
 import Gallery from '../components/Gallery.astro';
+import Reservations from '../components/Reservations.astro';
 import { useTranslations } from '../lib/i18n';
 
 const t = useTranslations(Astro.currentLocale || 'en');
@@ -22,6 +23,9 @@ const t = useTranslations(Astro.currentLocale || 'en');
   <!-- Gallery Section -->
   <Gallery />
 
+  <!-- Reservations Section -->
+  <Reservations />
+
   <!-- Temporary Placeholders for remaining sections -->
   <div class="max-w-7xl mx-auto px-4 md:px-8 space-y-24 pb-24">
     <section id="events" class="min-h-[50vh] py-20 border-t border-charcoal/10 scroll-mt-20 flex items-center justify-center bg-gray-50 rounded-lg">
@@ -35,13 +39,6 @@ const t = useTranslations(Astro.currentLocale || 'en');
       <div class="text-center">
         <h2 class="text-4xl font-serif font-bold text-charcoal mb-6">{t('nav.location')}</h2>
         <p class="text-lg text-charcoal/60">Location Component Coming Soon</p>
-      </div>
-    </section>
-
-    <section id="reservations" class="min-h-[50vh] py-20 border-t border-charcoal/10 scroll-mt-20 flex items-center justify-center bg-gray-50 rounded-lg">
-       <div class="text-center">
-        <h2 class="text-4xl font-serif font-bold text-charcoal mb-6">{t('cta.reserve')}</h2>
-        <p class="text-lg text-charcoal/60">Reservations Component Coming Soon</p>
       </div>
     </section>
   </div>
