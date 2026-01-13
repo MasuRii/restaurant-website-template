@@ -5,6 +5,7 @@ import '../styles/global.css';
 import { useTranslations } from '../lib/i18n';
 import WebVitals from '../components/analytics/WebVitals.astro';
 import Header from '../components/Header.astro';
+import FloatingCTA from '../components/FloatingCTA.astro';
 
 interface Props {
   title: string;
@@ -57,5 +58,7 @@ const siteDescription = description || t('site.description');
     <main id="main-content" class="flex-grow">
       <slot />
     </main>
+
+    <FloatingCTA />
   </body>
 </html>
