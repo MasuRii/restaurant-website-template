@@ -1,66 +1,28 @@
 ---
 import GalleryGrid from './GalleryGrid';
 import i18next from 'i18next';
-
-const images = [
-  {
-    src: "/images/gallery/food-1.svg",
-    alt: "Plated heirloom tomato salad with basil foam",
-    category: "food",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    src: "/images/gallery/interior-1.svg",
-    alt: "Main dining room featuring the open hearth",
-    category: "interior",
-    span: "md:col-span-2 md:row-span-1"
-  },
-  {
-    src: "/images/gallery/food-2.svg",
-    alt: "Wood-fired ribeye with bone marrow butter",
-    category: "food",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    src: "/images/gallery/food-3.svg",
-    alt: "Seasonal vegetable succotash",
-    category: "food",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    src: "/images/gallery/interior-2.svg",
-    alt: "Bar area and cocktail lounge",
-    category: "interior",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    src: "/images/gallery/food-4.svg",
-    alt: "Dark chocolate tart dessert",
-    category: "food",
-    span: "md:col-span-2 md:row-span-1"
-  }
-];
+import galleryImages from '../data/gallery.json';
 
 const { t } = i18next;
 ---
 
-<section id="gallery" className="py-24 bg-alabaster relative overflow-hidden">
-  <div className="container mx-auto px-4 md:px-8">
-    <div className="max-w-3xl mx-auto text-center mb-16 reveal-on-scroll">
-      <h2 className="text-4xl md:text-5xl font-serif text-charcoal mb-6">
+<section id="gallery" class="py-24 bg-alabaster relative overflow-hidden">
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="max-w-3xl mx-auto text-center mb-16 reveal-on-scroll">
+      <h2 class="text-4xl md:text-5xl font-serif text-charcoal mb-6">
         {t('gallery.title', 'Visual Proof')}
       </h2>
-      <p className="text-lg md:text-xl text-charcoal/70 leading-relaxed font-sans max-w-2xl mx-auto">
+      <p class="text-lg md:text-xl text-charcoal/70 leading-relaxed font-sans max-w-2xl mx-auto">
         {t('gallery.description', 'Immerse yourself in the atmosphere of Risū & Oak, where rustic meets refined.')}
       </p>
     </div>
 
     <div class="reveal-on-scroll" data-delay="200">
-      <GalleryGrid client:visible images={images} />
+      <GalleryGrid client:visible images={galleryImages} />
     </div>
   </div>
 
   {/* Decorative elements */}
-  <div className="absolute top-0 right-0 w-64 h-64 bg-sage/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-  <div className="absolute bottom-0 left-0 w-96 h-96 bg-charcoal/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+  <div class="absolute top-0 right-0 w-64 h-64 bg-sage/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-charcoal/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 </section>

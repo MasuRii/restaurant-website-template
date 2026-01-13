@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "src": "/images/gallery/food-1.svg",
+    "alt": "Plated heirloom tomato salad with basil foam",
+    "category": "food",
+    "span": "md:col-span-1 md:row-span-1"
+  },
+  {
+    "id": "2",
+    "src": "/images/gallery/interior-1.svg",
+    "alt": "Main dining room featuring the open hearth",
+    "category": "interior",
+    "span": "md:col-span-2 md:row-span-1"
+  },
+  {
+    "id": "3",
+    "src": "/images/gallery/food-2.svg",
+    "alt": "Wood-fired ribeye with bone marrow butter",
+    "category": "food",
+    "span": "md:col-span-1 md:row-span-1"
+  },
+  {
+    "id": "4",
+    "src": "/images/gallery/food-3.svg",
+    "alt": "Seasonal vegetable succotash",
+    "category": "food",
+    "span": "md:col-span-1 md:row-span-1"
+  },
+  {
+    "id": "5",
+    "src": "/images/gallery/interior-2.svg",
+    "alt": "Bar area and cocktail lounge",
+    "category": "interior",
+    "span": "md:col-span-1 md:row-span-1"
+  },
+  {
+    "id": "6",
+    "src": "/images/gallery/food-4.svg",
+    "alt": "Dark chocolate tart dessert",
+    "category": "food",
+    "span": "md:col-span-2 md:row-span-1"
+  }
+]
