@@ -36,4 +36,30 @@ test.describe('Sections', () => {
     await lightbox.locator('button[aria-label="Close gallery"]').click();
     await expect(lightbox).not.toBeVisible();
   });
+
+  test('menu section has valid schema markup', async ({ page }) => {
+    const menuSection = page.locator('#menu');
+    await expect(menuSection).toBeVisible();
+
+    // Get the JSON-LD script content
+    const schemaScript = menuSection.locator('script[type="application/ld+json"]');
+    await expect(schemaScript).toHaveCount(1);
+    
+    const schemaContent = await schemaScript.textContent();
+    expect(schemaContent).toBeTruthy();
+    
+    const schema = JSON.parse(schemaContent!);
+    expect(schema['@type']).toBe('Menu');
+    expect(schema.hasMenuSection).toBeInstanceOf(Array);
+    expect(schema.hasMenuSection.length).toBeGreaterThan(0);
+    
+    const firstSection = schema.hasMenuSection[0];
+    expect(firstSection['@type']).toBe('MenuSection');
+    expect(firstSection.hasMenuItem).toBeInstanceOf(Array);
+    expect(firstSection.hasMenuItem.length).toBeGreaterThan(0);
+    
+    const firstItem = firstSection.hasMenuItem[0];
+    expect(firstItem['@type']).toBe('MenuItem');
+    expect(firstItem.offers).toBeDefined();
+  });
 });

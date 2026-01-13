@@ -4,6 +4,66 @@ import { useTranslations } from '../lib/i18n';
 
 const t = useTranslations(Astro.currentLocale || 'en');
 const menuData = t('menu', { returnObjects: true });
+
+// Helper to map dietary tags to Schema.org URLs
+const dietaryMap = {
+  'v': 'https://schema.org/VegetarianDiet',
+  'gf': 'https://schema.org/GlutenFreeDiet',
+  'vg': 'https://schema.org/VeganDiet'
+};
+
+// Generate Menu Schema
+const menuSchema = {
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": `${t('site.title')} Menu`,
+  "description": menuData.title,
+  "hasMenuSection": Object.keys(menuData.categories).map(key => {
+    const categoryName = menuData.categories[key];
+    const items = menuData.items[key] || [];
+    
+    return {
+      "@type": "MenuSection",
+      "name": categoryName,
+      "hasMenuItem": items.map(item => {
+        const dietaryRestricts = item.dietary ? item.dietary.map(d => dietaryMap[d]).filter(Boolean) : [];
+        
+        // Parse price (remove '$' and handle " / " for ranges or variations if needed)
+        // For simple "$24", simple replace. For "$18 / $72", maybe take the first or range?
+        // Schema offers can be an array.
+        // Let's handle simple case first.
+        const priceStr = item.price.replace('$', '');
+        const offers = [];
+        
+        if (priceStr.includes('/')) {
+             // Handle split prices (e.g. glass/bottle)
+             const prices = priceStr.split('/').map(p => p.trim().replace('$', ''));
+             prices.forEach(p => {
+                 offers.push({
+                    "@type": "Offer",
+                    "price": p,
+                    "priceCurrency": "USD"
+                 });
+             });
+        } else {
+            offers.push({
+                "@type": "Offer",
+                "price": priceStr,
+                "priceCurrency": "USD"
+            });
+        }
+
+        return {
+          "@type": "MenuItem",
+          "name": item.name,
+          "description": item.description,
+          "offers": offers,
+          "suitableForDiet": dietaryRestricts.length > 0 ? dietaryRestricts : undefined
+        };
+      })
+    };
+  })
+};
 ---
 
 <section id="menu" class="py-24 md:py-32 bg-paper relative scroll-mt-20">
@@ -13,4 +73,6 @@ const menuData = t('menu', { returnObjects: true });
   </div>
 
   <MenuDisplay client:visible data={menuData} />
+  
+  <script type="application/ld+json" set:html={JSON.stringify(menuSchema)} />
 </section>
