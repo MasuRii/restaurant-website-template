@@ -1,0 +1,17 @@
+{
+  "site": {
+    "title": "Risū & Oak",
+    "description": "Seasonal wood-fired dining in San Francisco"
+  },
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "about": "Our Story",
+    "reservations": "Reservations",
+    "location": "Location"
+  },
+  "cta": {
+    "reserve": "Reserve a Table",
+    "viewMenu": "View Menu"
+  }
+}

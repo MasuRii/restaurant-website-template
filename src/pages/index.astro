@@ -2,33 +2,36 @@
 import '@fontsource/playfair-display';
 import '@fontsource/dm-sans';
 import '../styles/global.css';
+import { useTranslations } from '../lib/i18n';
+
+const t = useTranslations(Astro.currentLocale || 'en');
 ---
 
-<html lang="en">
+<html lang={Astro.currentLocale || 'en'}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Risū & Oak</title>
+    <title>{t('site.title')}</title>
   </head>
   <body class="antialiased">
     <main class="max-w-4xl mx-auto p-8 space-y-8">
       <div class="space-y-4">
-        <h1 class="text-5xl font-serif font-bold text-primary">Risū & Oak</h1>
-        <p class="text-xl max-w-prose">A seasonal wood-fired dining experience in San Francisco.</p>
+        <h1 class="text-5xl font-serif font-bold text-primary">{t('site.title')}</h1>
+        <p class="text-xl max-w-prose">{t('site.description')}</p>
       </div>
 
       <div class="flex gap-4">
         <button
           class="px-6 py-3 bg-primary text-alabaster rounded-full font-medium hover:-translate-y-0.5 transition-transform shadow-sm"
         >
-          Reserve a Table
+          {t('cta.reserve')}
         </button>
         <button
           class="px-6 py-3 border border-primary text-primary rounded-full font-medium hover:bg-primary/5 transition-colors"
         >
-          View Menu
+          {t('cta.viewMenu')}
         </button>
       </div>
 
