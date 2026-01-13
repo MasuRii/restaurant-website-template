@@ -4,6 +4,7 @@ import '@fontsource/dm-sans';
 import '../styles/global.css';
 import { useTranslations } from '../lib/i18n';
 import WebVitals from '../components/analytics/WebVitals.astro';
+import { ThemeToggle } from '../components/ThemeToggle';
 
 interface Props {
   title: string;
@@ -24,6 +25,24 @@ const siteDescription = description || t('site.description');
     <title>{title}</title>
     <meta name="description" content={siteDescription} />
     <WebVitals />
+    <script is:inline>
+      const getTheme = () => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      };
+      const theme = getTheme();
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      window.localStorage.setItem('theme', theme);
+    </script>
   </head>
   <body class="bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-white">
     <a
@@ -34,5 +53,9 @@ const siteDescription = description || t('site.description');
     </a>
 
     <slot />
+
+    <div class="fixed bottom-4 right-4 z-40 bg-background/80 backdrop-blur-sm rounded-full shadow-lg border border-primary/10">
+      <ThemeToggle client:load />
+    </div>
   </body>
 </html>

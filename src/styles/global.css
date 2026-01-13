@@ -11,12 +11,16 @@
   --color-terracotta: #d2691e;
   --color-charcoal-dark: #1a1a1a;
   --color-warm-grey: #e5e5e5;
+  --color-gold: #d4a853;
+  --color-ember: #8b2635;
 
   /* Semantic Colors mapping */
-  --color-background: var(--color-alabaster);
-  --color-foreground: var(--color-charcoal);
-  --color-primary: var(--color-charcoal);
-  --color-accent: var(--color-terracotta);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
 
   /* Border Radius */
   --radius-sm: 2px;
@@ -25,11 +29,31 @@
   --radius-full: 9999px;
 }
 
+/* CSS Variables for theming */
+:root {
+  --background: #faf7f2;
+  --foreground: #2d2d2d;
+  --primary: #1a1a1a;
+  --secondary: #d4a853;
+  --accent: #8b2635;
+  --muted: #6b6b6b;
+}
+
+.dark {
+  --background: #1a1a1a;
+  --foreground: #e5e5e5;
+  --primary: #e5e5e5;
+  --secondary: #d4a853;
+  --accent: #ff6b6b;
+  --muted: #a3a3a3;
+}
+
 @layer base {
   html {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1,
