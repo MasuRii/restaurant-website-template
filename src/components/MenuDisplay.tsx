@@ -47,7 +47,7 @@ export default function MenuDisplay({ data }: MenuDisplayProps) {
         <span className="text-sm font-medium text-charcoal/60 self-center mr-2 uppercase tracking-widest text-xs">Dietary</span>
         <button
           onClick={() => toggleFilter('v')}
-          className={`px-4 py-1.5 text-xs uppercase tracking-wider font-medium rounded-full transition-all duration-300 border ${
+          className={`px-4 py-1.5 text-xs uppercase tracking-wider font-medium rounded-full transition-all duration-300 border interactive-focus ${
             filters.v 
               ? 'bg-charcoal text-alabaster border-charcoal' 
               : 'bg-transparent text-charcoal/60 border-charcoal/20 hover:border-charcoal/60'
@@ -58,7 +58,7 @@ export default function MenuDisplay({ data }: MenuDisplayProps) {
         </button>
         <button
           onClick={() => toggleFilter('gf')}
-          className={`px-4 py-1.5 text-xs uppercase tracking-wider font-medium rounded-full transition-all duration-300 border ${
+          className={`px-4 py-1.5 text-xs uppercase tracking-wider font-medium rounded-full transition-all duration-300 border interactive-focus ${
             filters.gf 
               ? 'bg-charcoal text-alabaster border-charcoal' 
               : 'bg-transparent text-charcoal/60 border-charcoal/20 hover:border-charcoal/60'
@@ -78,7 +78,7 @@ export default function MenuDisplay({ data }: MenuDisplayProps) {
               role="tab"
               aria-selected={activeCategory === key}
               onClick={() => setActiveCategory(key)}
-              className={`text-left whitespace-nowrap px-1 pb-3 md:pb-0 transition-all duration-300 text-lg md:text-xl font-serif ${
+              className={`text-left whitespace-nowrap px-1 pb-3 md:pb-0 transition-all duration-300 text-lg md:text-xl font-serif interactive-focus rounded-sm ${
                 activeCategory === key
                   ? 'text-charcoal border-b-2 md:border-b-0 md:border-r-2 border-charcoal -mb-[1px] md:-mr-[1px] md:mb-0 translate-x-0'
                   : 'text-charcoal/40 hover:text-charcoal/70 border-b-2 md:border-b-0 md:border-r-2 border-transparent'
@@ -120,7 +120,7 @@ export default function MenuDisplay({ data }: MenuDisplayProps) {
                 <p className="text-charcoal/40 text-lg font-serif italic">No items match your selected filters in this category.</p>
                 <button 
                   onClick={() => setFilters({v: false, gf: false})}
-                  className="mt-4 text-xs uppercase tracking-widest border-b border-charcoal/40 hover:border-charcoal text-charcoal/60 hover:text-charcoal transition-all"
+                  className="mt-4 text-xs uppercase tracking-widest border-b border-charcoal/40 hover:border-charcoal text-charcoal/60 hover:text-charcoal transition-all interactive-focus rounded-sm"
                 >
                   Clear Filters
                 </button>

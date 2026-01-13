@@ -89,4 +89,29 @@
       transition: none;
     }
   }
+
+  /* Interactive Elements */
+  .interactive-hover {
+    @apply transition-transform duration-300 ease-out hover:-translate-y-0.5;
+  }
+
+  .interactive-focus {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-secondary/50 focus-visible:rounded-sm transition-shadow duration-200;
+  }
+
+  .dark .interactive-focus {
+    @apply focus-visible:ring-offset-charcoal-dark;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-alabaster px-8 py-3 rounded-full font-medium text-lg hover:bg-primary/90 transition-transform duration-300 ease-out hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-secondary/50 focus-visible:rounded-sm shadow-lg cursor-pointer inline-flex items-center justify-center dark:bg-alabaster dark:text-primary dark:hover:bg-alabaster/90;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-primary text-primary px-8 py-3 rounded-full font-medium text-lg hover:bg-primary hover:text-alabaster transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-secondary/50 focus-visible:rounded-sm cursor-pointer inline-flex items-center justify-center dark:border-alabaster dark:text-alabaster dark:hover:bg-alabaster dark:hover:text-primary;
+  }
+
+  .btn-ghost {
+    @apply text-primary font-medium hover:text-secondary transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-secondary/50 focus-visible:rounded-sm dark:text-alabaster;
+  }
 }

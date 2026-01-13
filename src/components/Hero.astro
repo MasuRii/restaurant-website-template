@@ -47,13 +47,13 @@ const t = useTranslations(Astro.currentLocale || 'en');
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
       <a
         href="#reservations"
-        class="px-8 py-4 bg-terracotta text-alabaster rounded-full font-medium text-lg hover:bg-terracotta/90 hover:-translate-y-0.5 transition-all shadow-lg cursor-pointer min-w-[200px]"
+        class="btn-primary min-w-[200px] bg-terracotta hover:bg-terracotta/90 text-alabaster border-transparent"
       >
         {t('cta.reserve')}
       </a>
       <a
         href="#menu"
-        class="px-8 py-4 border-2 border-alabaster text-alabaster rounded-full font-medium text-lg hover:bg-alabaster hover:text-charcoal transition-all cursor-pointer min-w-[200px]"
+        class="btn-secondary min-w-[200px] border-alabaster text-alabaster hover:bg-alabaster hover:text-charcoal"
       >
         {t('cta.viewMenu')}
       </a>
