@@ -7,6 +7,7 @@ interface Props {
   alt: string;
   class?: string;
   loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
   sizes?: string;
   width?: number;
   height?: number;
@@ -17,6 +18,7 @@ const {
   alt, 
   class: className = '', 
   loading = 'lazy', 
+  fetchpriority = 'auto',
   sizes = '(min-width: 1024px) 100vw, 100vw',
   width,
   height
@@ -31,12 +33,22 @@ const placeholder = await getImage({
 });
 
 const placeholderStyle = `background-image: url('${placeholder.src}'); background-size: cover; background-position: center;`;
+
+const isEager = loading === 'eager';
+const imageClass = isEager 
+  ? `w-full h-full object-cover relative z-20 ${className}` 
+  : `w-full h-full object-cover relative z-20 opacity-0 transition-opacity duration-500 ${className}`;
+
+const onloadHandler = isEager 
+  ? undefined 
+  : "this.classList.remove('opacity-0'); this.previousElementSibling.classList.add('opacity-0');";
 ---
 
 <div class={`relative overflow-hidden bg-stone-200 ${className}`} style={placeholderStyle}>
-  {/* Blur layer */}
+  {/* Blur layer - only render if lazy loading or if we want the blur effect behind the eager image (but eager image should hide it) */}
+  {/* If eager, we might skip the blur layer entirely to save DOM nodes, or keep it as fallback. Let's keep it but handle opacity. */}
   <div 
-    class="absolute inset-0 backdrop-blur-xl scale-110 transition-opacity duration-700 pointer-events-none z-10"
+    class={`absolute inset-0 backdrop-blur-xl scale-110 transition-opacity duration-700 pointer-events-none z-10 ${isEager ? 'opacity-0' : ''}`}
     aria-hidden="true"
   ></div>
   
@@ -49,8 +61,9 @@ const placeholderStyle = `background-image: url('${placeholder.src}'); backgroun
     widths={[640, 768, 1024, 1280, 1536, 1920]}
     sizes={sizes}
     loading={loading}
+    fetchpriority={fetchpriority}
     format="avif"
-    class="w-full h-full object-cover relative z-20 opacity-0 transition-opacity duration-500"
-    onload="this.classList.remove('opacity-0'); this.previousElementSibling.classList.add('opacity-0');"
+    class={imageClass}
+    onload={onloadHandler}
   />
 </div>
