@@ -148,6 +148,23 @@
     "urgency": "Tables for tonight are limited.",
     "cancellation": "Easy cancellation up to 24 hours in advance."
   },
+  "location": {
+    "title": "Location & Hours",
+    "description": "Find us in the heart of SoMa.",
+    "address": "123 Mission St, San Francisco, CA 94105",
+    "getDirections": "Get Directions",
+    "parking": "Valet parking available on Mission St. Public garage located on Main St.",
+    "contact": {
+      "phone": "(415) 555-0123",
+      "email": "hello@risuandoak.com"
+    },
+    "hours": {
+      "heading": "Opening Hours",
+      "weekdays": "Tuesday - Sunday",
+      "time": "5:00 PM - 10:00 PM",
+      "happyHour": "Happy Hour: 4:00 PM - 6:00 PM"
+    }
+  },
   "nav": {
     "home": "Home",
     "menu": "Menu",

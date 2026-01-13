@@ -1,0 +1,153 @@
+---
+import { useTranslations } from '../lib/i18n';
+
+const t = useTranslations(Astro.currentLocale || 'en');
+const locationData = t('location', { returnObjects: true });
+const footerData = t('footer', { returnObjects: true }); // Fallback/Consistent data
+
+const address = locationData.address || footerData.contact.address;
+const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+---
+
+<section id="location" class="py-24 md:py-32 bg-alabaster text-charcoal">
+  <div class="max-w-7xl mx-auto px-4 md:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+      
+      <!-- Map Side -->
+      <div class="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square bg-stone-200 rounded-lg overflow-hidden shadow-lg group">
+        <!-- Static Map Placeholder (In a real app, use a static map image API here) -->
+        <div class="absolute inset-0 bg-stone-300 flex items-center justify-center">
+            <span class="text-charcoal/40 font-serif italic text-lg">Interactive Map Loading...</span>
+        </div>
+        
+        <!-- Overlay/Link -->
+        <a 
+          href={mapUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="absolute inset-0 bg-charcoal/10 group-hover:bg-charcoal/20 transition-colors duration-300 flex items-center justify-center"
+          aria-label="View location on Google Maps"
+        >
+          <span class="bg-white/90 backdrop-blur text-charcoal px-6 py-3 rounded-full font-medium shadow-md transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+            View on Google Maps
+          </span>
+        </a>
+      </div>
+
+      <!-- Info Side -->
+      <div class="space-y-12 py-4">
+        <!-- Heading -->
+        <div class="space-y-4">
+          <span class="text-terracotta uppercase tracking-widest text-sm font-medium">
+            {t('nav.location')}
+          </span>
+          <h2 class="text-4xl md:text-5xl font-serif font-bold leading-tight">
+            {locationData.title}
+          </h2>
+          <p class="text-lg text-charcoal/80 leading-relaxed font-sans max-w-md">
+            {locationData.description}
+          </p>
+        </div>
+
+        <!-- Details Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          
+          <!-- Address & Contact -->
+          <div class="space-y-6">
+            <h3 class="text-xl font-serif font-medium border-b border-charcoal/10 pb-2">Contact</h3>
+            <div class="space-y-4 font-sans text-charcoal/80">
+              <div>
+                <p class="font-medium text-charcoal">Address</p>
+                <p class="leading-relaxed">{address}</p>
+                <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="text-terracotta hover:text-amber-900 underline underline-offset-4 text-sm mt-1 inline-block transition-colors">
+                  {locationData.getDirections}
+                </a>
+              </div>
+              
+              <div>
+                <p class="font-medium text-charcoal">Get in Touch</p>
+                <p><a href={`tel:${locationData.contact.phone}`} class="hover:text-terracotta transition-colors">{locationData.contact.phone}</a></p>
+                <p><a href={`mailto:${locationData.contact.email}`} class="hover:text-terracotta transition-colors">{locationData.contact.email}</a></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hours -->
+          <div class="space-y-6">
+            <h3 class="text-xl font-serif font-medium border-b border-charcoal/10 pb-2">{locationData.hours.heading}</h3>
+            <div class="space-y-4 font-sans text-charcoal/80">
+              <div>
+                <p class="font-medium text-charcoal">{locationData.hours.weekdays}</p>
+                <p>{locationData.hours.time}</p>
+              </div>
+              <div>
+                <p class="font-medium text-charcoal">Happy Hour</p>
+                <p>Tue - Fri: 4:00 PM - 6:00 PM</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Parking -->
+        <div class="bg-white/50 p-6 rounded-lg border border-charcoal/5">
+          <div class="flex items-start gap-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-terracotta shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
+              <circle cx="7" cy="17" r="2" />
+              <path d="M9 17h6" />
+              <circle cx="17" cy="17" r="2" />
+            </svg>
+            <div>
+              <p class="font-medium text-charcoal mb-1">Parking</p>
+              <p class="text-sm text-charcoal/70 leading-relaxed">
+                {locationData.parking}
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Schema.org LocalBusiness JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Risū & Oak",
+    "image": "https://risuandoak.com/images/hero.jpg", 
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Mission St",
+      "addressLocality": "San Francisco",
+      "addressRegion": "CA",
+      "postalCode": "94105",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "url": "https://risuandoak.com",
+    "telephone": locationData.contact.phone,
+    "priceRange": "$$$",
+    "servesCuisine": "Contemporary American",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "17:00",
+        "closes": "22:00"
+      }
+    ]
+  })} />
+</section>
