@@ -49,6 +49,10 @@ test.describe('User Flows', () => {
     const reservationsSection = page.locator('#reservations');
     await expect(reservationsSection).toBeInViewport();
 
+    // Wait for hydration
+    const form = page.locator('#reservation-form');
+    await expect(form).toHaveAttribute('data-hydrated', 'true', { timeout: 10000 });
+
     await page.locator('#date').fill('2026-12-25');
     await page.locator('#time').selectOption('7:00 PM');
     await page.locator('#guests').selectOption('2');
@@ -99,6 +103,10 @@ test.describe('User Flows', () => {
     }
 
     await expect(page.locator('#reservations')).toBeInViewport();
+
+    // Wait for hydration
+    const form = page.locator('#reservation-form');
+    await expect(form).toHaveAttribute('data-hydrated', 'true', { timeout: 10000 });
   });
 
   test('Flow 3: Direct reservation from hero CTA', async ({ page }) => {
@@ -125,6 +133,10 @@ test.describe('User Flows', () => {
 
     // 3. Verify section
     await expect(page.locator('#reservations')).toBeInViewport();
+
+    // Wait for hydration
+    const form = page.locator('#reservation-form');
+    await expect(form).toHaveAttribute('data-hydrated', 'true', { timeout: 10000 });
 
     // 4. Fill & Submit
     await page.locator('#date').fill('2026-10-15');

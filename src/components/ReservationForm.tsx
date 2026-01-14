@@ -23,6 +23,12 @@ interface ReservationFormProps {
 }
 
 function ReservationFormContent({ labels, messages }: ReservationFormProps) {
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  React.useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
   const [formData, setFormData] = useState({
     date: '',
     time: '',
@@ -110,7 +116,12 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
   ];
 
   return (
-    <form id="reservation-form" onSubmit={handleSubmit} className="w-full max-w-4xl mx-auto">
+    <form
+      id="reservation-form"
+      onSubmit={handleSubmit}
+      className="w-full max-w-4xl mx-auto"
+      data-hydrated={isHydrated}
+    >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {/* Date */}
         <div className="flex flex-col">

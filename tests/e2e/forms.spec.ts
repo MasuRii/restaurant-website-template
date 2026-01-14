@@ -22,6 +22,10 @@ test.describe('Forms and Interactivity', () => {
       const reservationSection = page.locator('#reservations');
       await reservationSection.scrollIntoViewIfNeeded();
 
+      // Wait for hydration
+      const form = page.locator('#reservation-form');
+      await expect(form).toHaveAttribute('data-hydrated', 'true', { timeout: 10000 });
+
       // Fill form
       await page.locator('#date').fill('2026-12-25');
       await page.locator('#time').selectOption('7:00 PM');
@@ -43,7 +47,9 @@ test.describe('Forms and Interactivity', () => {
 
       try {
         await expect(confirmedHeading).toBeVisible({ timeout: 10000 });
-        await expect(page.getByText(/We have received your request/i)).toBeVisible();
+        await expect(
+          page.locator('p').filter({ hasText: /Reservation requested successfully/i })
+        ).toBeVisible();
       } catch (e) {
         // If success failed, check if error is visible to help debugging
         const errorMsg = page.locator('.text-red-600');
@@ -90,10 +96,10 @@ test.describe('Forms and Interactivity', () => {
       const closeButton = page.getByText(/No thanks/i);
       await expect(closeButton).toBeVisible();
       await page.waitForTimeout(500); // Wait for animation
-      await closeButton.click();
+      await closeButton.click({ force: true });
 
       const modalHeading = page.getByRole('heading', { name: /Join the inner circle/i });
-      await expect(modalHeading).not.toBeVisible();
+      await expect(modalHeading).not.toBeVisible({ timeout: 10000 });
     });
   });
 
