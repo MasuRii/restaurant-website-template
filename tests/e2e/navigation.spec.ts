@@ -25,7 +25,7 @@ test.describe('Navigation', () => {
     await expect(locationLink).toBeVisible();
     await locationLink.click();
     await expect(page.locator('#location')).toBeInViewport();
-    
+
     // Check Menu link exists in desktop nav
     // Target the desktop nav specifically to avoid strict mode violations
     const desktopNav = page.locator('nav.hidden.md\\:flex');
@@ -41,7 +41,7 @@ test.describe('Navigation', () => {
     const mobileMenu = page.locator('#mobile-menu');
 
     // Menu should be hidden initially (off-screen)
-    // Note: Playwright's toBeVisible() considers transformed elements visible, 
+    // Note: Playwright's toBeVisible() considers transformed elements visible,
     // so we check for the translation class
     await expect(mobileMenu).toHaveClass(/translate-x-full/);
 
@@ -50,14 +50,14 @@ test.describe('Navigation', () => {
     // Wait for animation class change
     await expect(mobileMenu).toHaveClass(/translate-x-0/);
     await expect(openBtn).toHaveAttribute('aria-expanded', 'true');
-    
+
     // Wait for the close button to be stable/visible
     await expect(closeBtn).toBeVisible();
 
     // Close menu - force click using JS evaluation to bypass viewport checks
     // which can be flaky on mobile emulation with full-screen fixed overlays
     await closeBtn.evaluate((node) => node.click());
-    
+
     await expect(mobileMenu).toHaveClass(/translate-x-full/);
     await expect(openBtn).toHaveAttribute('aria-expanded', 'false');
   });
@@ -77,29 +77,29 @@ test.describe('Navigation', () => {
     // Click link
     // Ensure the link is interactable
     await expect(storyLink).toBeVisible();
-    
+
     // Force click using JS evaluation
     await storyLink.evaluate((node) => node.click());
 
     // Menu should close
     await expect(mobileMenu).toHaveClass(/translate-x-full/);
-    
+
     // Should scroll to section
     await expect(page.locator('#story')).toBeInViewport();
   });
 
   test('sticky header remains visible on scroll', async ({ page }) => {
     const header = page.locator('#main-header');
-    
+
     // Initial state
     await expect(header).toBeVisible();
-    
+
     // Scroll down
     await page.evaluate(() => window.scrollTo(0, 500));
-    
+
     // Header should still be visible (sticky)
     await expect(header).toBeVisible();
-    
+
     // Check for style changes indicating scroll state (border/bg)
     // The script adds border-primary/10 and bg-background/80
     await expect(header).toHaveClass(/border-primary\/10/);
@@ -107,20 +107,20 @@ test.describe('Navigation', () => {
 
   test('"Reserve a Table" CTA is accessible', async ({ page, isMobile }) => {
     if (isMobile) {
-        const openBtn = page.locator('#open-menu-btn');
-        await openBtn.click({ force: true });
-        
-        const mobileMenu = page.locator('#mobile-menu');
-        await expect(mobileMenu).toHaveClass(/translate-x-0/);
-        
-        const mobileCta = mobileMenu.getByRole('link', { name: 'Reserve a Table' });
-        await expect(mobileCta).toBeVisible();
-        await expect(mobileCta).toHaveAttribute('href', '#reservations');
+      const openBtn = page.locator('#open-menu-btn');
+      await openBtn.click({ force: true });
+
+      const mobileMenu = page.locator('#mobile-menu');
+      await expect(mobileMenu).toHaveClass(/translate-x-0/);
+
+      const mobileCta = mobileMenu.getByRole('link', { name: 'Reserve a Table' });
+      await expect(mobileCta).toBeVisible();
+      await expect(mobileCta).toHaveAttribute('href', '#reservations');
     } else {
-        // Target the desktop button specifically
-        const desktopCta = page.locator('a.hidden.md\\:inline-flex', { hasText: 'Reserve a Table' });
-        await expect(desktopCta).toBeVisible();
-        await expect(desktopCta).toHaveAttribute('href', '#reservations');
+      // Target the desktop button specifically
+      const desktopCta = page.locator('a.hidden.md\\:inline-flex', { hasText: 'Reserve a Table' });
+      await expect(desktopCta).toBeVisible();
+      await expect(desktopCta).toHaveAttribute('href', '#reservations');
     }
   });
 });

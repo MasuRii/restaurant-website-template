@@ -13,29 +13,22 @@ test.describe('User Flows', () => {
     await expect(page).toHaveTitle(/Risū & Oak/);
 
     // 2. Browse Menu
-    // Note: The menu link is currently /menu, which points to a missing page.
-    // Ideally it should be #menu. For this test, we verify the link exists
-    // but manually scroll to the #menu section to continue the user journey.
     if (isMobile) {
       const openBtn = page.locator('#open-menu-btn');
       await expect(openBtn).toBeVisible();
       await openBtn.click({ force: true });
 
-      const menuLink = page.locator('.mobile-nav-link[href="/menu"]');
+      const menuLink = page.locator('.mobile-nav-link[href="#menu"]');
       await expect(menuLink).toBeVisible();
-
-      // Close menu by reloading the page to ensure clean state for scrolling
-      await page.reload();
-      // Wait for page to be stable
-      await expect(page).toHaveTitle(/Risū & Oak/);
+      await menuLink.evaluate((node) => (node as HTMLElement).click());
     } else {
-      const menuLink = page.locator('nav.hidden.md\\:flex a[href="/menu"]');
+      const menuLink = page.locator('nav.hidden.md\\:flex a[href="#menu"]');
       await expect(menuLink).toBeVisible();
+      await menuLink.click();
     }
 
-    // Manually scroll to menu section
+    // Verify we arrived at the menu section
     const menuSection = page.locator('#menu');
-    await menuSection.scrollIntoViewIfNeeded();
     await expect(menuSection).toBeInViewport();
 
     // 3. Make Reservation from Sticky Header

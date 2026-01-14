@@ -5,7 +5,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-primary text-alabaster py-16">
+<footer id="contact" class="bg-primary text-alabaster py-16">
   <div class="container mx-auto px-4">
     <!-- Newsletter Section -->
     <div class="flex flex-col md:flex-row items-center justify-between border-b border-alabaster/10 pb-12 mb-12 gap-8">
@@ -46,7 +46,7 @@ const currentYear = new Date().getFullYear();
         <h4 class="font-serif text-lg mb-6">{t('nav.home')}</h4>
         <nav class="flex flex-col space-y-3">
           <a href="#story" class="text-alabaster/70 hover:text-secondary transition-colors">{t('nav.story')}</a>
-          <a href="/menu" class="text-alabaster/70 hover:text-secondary transition-colors">{t('nav.menu')}</a>
+          <a href="#menu" class="text-alabaster/70 hover:text-secondary transition-colors">{t('nav.menu')}</a>
           <a href="#events" class="text-alabaster/70 hover:text-secondary transition-colors">{t('nav.privateDining')}</a>
           <a href="#location" class="text-alabaster/70 hover:text-secondary transition-colors">{t('nav.location')}</a>
           <a href="#reservations" class="text-alabaster/70 hover:text-secondary transition-colors">{t('nav.reservations')}</a>

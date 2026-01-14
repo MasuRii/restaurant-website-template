@@ -17,7 +17,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
     <!-- Desktop Nav -->
     <nav class="hidden md:flex items-center gap-8 z-10">
       <a href="#story" class="desktop-nav-link text-sm font-medium hover:text-secondary transition-colors interactive-focus rounded-sm">{t('nav.story')}</a>
-      <a href="/menu" class="text-sm font-medium hover:text-secondary transition-colors interactive-focus rounded-sm">{t('nav.menu')}</a>
+      <a href="#menu" class="text-sm font-medium hover:text-secondary transition-colors interactive-focus rounded-sm">{t('nav.menu')}</a>
       <a href="#events" class="desktop-nav-link text-sm font-medium hover:text-secondary transition-colors interactive-focus rounded-sm">{t('nav.privateDining')}</a>
       <a href="#location" class="desktop-nav-link text-sm font-medium hover:text-secondary transition-colors interactive-focus rounded-sm">{t('nav.location')}</a>
     </nav>
@@ -64,7 +64,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
     
     <nav class="flex-1 flex flex-col justify-center items-center gap-8 p-8">
 <a href="#story" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm min-h-[44px] flex items-center">{t('nav.story')}</a>
-      <a href="/menu" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm min-h-[44px] flex items-center">{t('nav.menu')}</a>
+      <a href="#menu" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm min-h-[44px] flex items-center">{t('nav.menu')}</a>
       <a href="#events" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm min-h-[44px] flex items-center">{t('nav.privateDining')}</a>
       <a href="#location" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm min-h-[44px] flex items-center">{t('nav.location')}</a>
       <button id="mobile-order-btn" class="text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm text-center min-h-[44px] flex items-center">{t('orderOnline.title') || 'Order Online'}</button>
