@@ -1,10 +1,17 @@
+import type { APIRoute } from 'astro';
+
+export const GET: APIRoute = () => {
+  const base = import.meta.env.BASE_URL;
+
+  const swContent = `
 const CACHE_NAME = 'risu-oak-v1';
+const BASE_PATH = '${base}';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/manifest.json',
-  '/images/icons/manifest-icon-192.maskable.png',
-  '/images/icons/manifest-icon-512.maskable.png',
-  '/images/logo.svg'
+  BASE_PATH,
+  BASE_PATH + 'manifest.json',
+  BASE_PATH + 'images/icons/manifest-icon-192.maskable.png',
+  BASE_PATH + 'images/icons/manifest-icon-512.maskable.png',
+  BASE_PATH + 'images/logo.svg'
 ];
 
 self.addEventListener('install', (event) => {
@@ -37,7 +44,7 @@ self.addEventListener('fetch', (event) => {
       fetch(event.request)
         .catch(() => {
           return caches.match(event.request)
-            .then((response) => response || caches.match('/'));
+            .then((response) => response || caches.match(BASE_PATH));
         })
     );
     return;
@@ -49,3 +56,12 @@ self.addEventListener('fetch', (event) => {
       .then((response) => response || fetch(event.request))
   );
 });
+`;
+
+  return new Response(swContent.trim(), {
+    headers: {
+      'Content-Type': 'application/javascript',
+      'Service-Worker-Allowed': base,
+    },
+  });
+};

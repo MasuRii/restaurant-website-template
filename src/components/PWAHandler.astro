@@ -3,6 +3,7 @@ import { useTranslations } from '../lib/i18n';
 
 const { currentLocale } = Astro;
 const t = useTranslations(currentLocale || 'en');
+const base = import.meta.env.BASE_URL;
 
 // Strings for the install prompt
 const strings = {
@@ -32,11 +33,11 @@ const strings = {
   </div>
 </div>
 
-<script>
+<script define:vars={{ base }}>
   // Service Worker Registration
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
+      navigator.serviceWorker.register(`${base}sw.js`)
         .then(registration => {
           console.log('SW registered: ', registration);
         })

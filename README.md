@@ -15,7 +15,7 @@
 
 ![Screenshot of the Website](src/assets/images/image.png)
 
-[Live Demo](https://masurii.github.io/restaurant-website-template/) | [Documentation](#-documentation) | [Quick Start](#-quick-start)
+[Live Demo](https://masurii.github.io/restaurant-website-template/) | [Documentation](#documentation) | [Quick Start](#quick-start)
 
 </div>
 

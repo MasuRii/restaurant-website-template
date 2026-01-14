@@ -2,15 +2,16 @@
 import { useTranslations } from '../lib/i18n';
 
 const t = useTranslations(Astro.currentLocale || 'en');
+const base = import.meta.env.BASE_URL;
 
 // Instagram feed images
 const posts = [
-  { id: 1, alt: "Wood fired pizza fresh from the oven", src: "/images/instagram/wood-fired.jpg" },
-  { id: 2, alt: "Chef plating a gourmet dish", src: "/images/instagram/plating.jpg" },
-  { id: 3, alt: "Warm restaurant interior ambience", src: "/images/instagram/ambience.jpg" },
-  { id: 4, alt: "Artisan cocktails at the bar", src: "/images/instagram/cocktails.jpg" },
-  { id: 5, alt: "Fresh seasonal ingredients", src: "/images/instagram/fresh.jpg" },
-  { id: 6, alt: "Elegant evening dining service", src: "/images/instagram/evening.jpg" },
+  { id: 1, alt: "Wood fired pizza fresh from the oven", src: `${base}images/instagram/wood-fired.jpg` },
+  { id: 2, alt: "Chef plating a gourmet dish", src: `${base}images/instagram/plating.jpg` },
+  { id: 3, alt: "Warm restaurant interior ambience", src: `${base}images/instagram/ambience.jpg` },
+  { id: 4, alt: "Artisan cocktails at the bar", src: `${base}images/instagram/cocktails.jpg` },
+  { id: 5, alt: "Fresh seasonal ingredients", src: `${base}images/instagram/fresh.jpg` },
+  { id: 6, alt: "Elegant evening dining service", src: `${base}images/instagram/evening.jpg` },
 ];
 ---
 
