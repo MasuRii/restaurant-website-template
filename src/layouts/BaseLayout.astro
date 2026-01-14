@@ -24,7 +24,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
 const siteDescription = description || t('site.description');
 ---
 
-<html lang={Astro.currentLocale || 'en'} class="scroll-smooth">
+<html lang={Astro.currentLocale || 'en'} class="scroll-smooth overflow-x-hidden">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -77,7 +77,7 @@ const siteDescription = description || t('site.description');
       window.localStorage.setItem('theme', theme);
     </script>
   </head>
-  <body class="bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-white flex flex-col min-h-screen">
+  <body class="bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-white flex flex-col min-h-screen overflow-x-hidden">
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-primary text-alabaster rounded-md shadow-lg"

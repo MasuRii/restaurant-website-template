@@ -39,7 +39,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
       </a>
       
       <!-- Mobile Menu Button -->
-      <button id="open-menu-btn" class="md:hidden p-2 interactive-focus rounded-sm" aria-label={t('a11y.openMenu')} aria-expanded="false" aria-controls="mobile-menu">
+      <button id="open-menu-btn" class="md:hidden p-2.5 interactive-focus rounded-sm min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label={t('a11y.openMenu')} aria-expanded="false" aria-controls="mobile-menu">
         <span class="sr-only">Menu</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -54,7 +54,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
   <div id="mobile-menu" class="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col h-[100dvh]" aria-hidden="true">
     <div class="flex items-center justify-between p-4 border-b border-primary/10">
       <span class="text-xl font-serif font-bold text-primary dark:text-alabaster">{t('site.title')}</span>
-      <button id="close-menu-btn" class="p-2 text-primary dark:text-alabaster" aria-label={t('a11y.closeMenu')}>
+      <button id="close-menu-btn" class="p-2.5 text-primary dark:text-alabaster min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label={t('a11y.closeMenu')}>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -63,11 +63,11 @@ const t = useTranslations(Astro.currentLocale || 'en');
     </div>
     
     <nav class="flex-1 flex flex-col justify-center items-center gap-8 p-8">
-      <a href="#story" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm">{t('nav.story')}</a>
-      <a href="/menu" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm">{t('nav.menu')}</a>
-      <a href="#events" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm">{t('nav.privateDining')}</a>
-      <a href="#location" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm">{t('nav.location')}</a>
-      <button id="mobile-order-btn" class="text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm text-center">{t('orderOnline.title') || 'Order Online'}</button>
+<a href="#story" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm min-h-[44px] flex items-center">{t('nav.story')}</a>
+      <a href="/menu" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm min-h-[44px] flex items-center">{t('nav.menu')}</a>
+      <a href="#events" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm min-h-[44px] flex items-center">{t('nav.privateDining')}</a>
+      <a href="#location" class="mobile-nav-link text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm min-h-[44px] flex items-center">{t('nav.location')}</a>
+      <button id="mobile-order-btn" class="text-3xl font-serif font-medium text-primary dark:text-alabaster hover:opacity-70 transition-opacity interactive-focus rounded-sm text-center min-h-[44px] flex items-center">{t('orderOnline.title') || 'Order Online'}</button>
     </nav>
 
     <div class="p-8 border-t border-primary/10 safe-area-bottom">
