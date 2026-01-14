@@ -32,6 +32,10 @@ export default defineConfig({
       name: 'Mobile Safari',
       use: { ...devices['iPhone 12'] },
     },
+    {
+      name: 'Tablet Safari',
+      use: { ...devices['iPad Gen 7'] },
+    },
   ],
   webServer: {
     command: 'bun run dev',
