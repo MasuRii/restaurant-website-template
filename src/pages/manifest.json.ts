@@ -1,7 +1,9 @@
 import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = ({ site }) => {
-  const base = import.meta.env.BASE_URL;
+  // Ensure base URL ends with a slash
+  const rawBase = import.meta.env.BASE_URL;
+  const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
   const manifest = {
     name: 'Risū & Oak',

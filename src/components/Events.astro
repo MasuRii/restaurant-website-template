@@ -6,14 +6,15 @@ import { Image } from 'astro:assets';
 
 const t = useTranslations(Astro.currentLocale || 'en');
 
-// Helper to import images dynamically
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif}');
+// Ensure base URL ends with a slash
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
-// Fallback image if dynamic import fails or path is external
+// Helper to prefix image paths with base URL
 const getImagePath = (path: string) => {
-    // For this template, we are using public images referenced in JSON
-    // In a real Astro app with image optimization, we would resolve these
-    return path;
+    // Remove leading slash from path and prepend base
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+    return `${base}${cleanPath}`;
 }
 
 // Generate Event Schema
@@ -66,7 +67,7 @@ const eventsSchema = {
         <article class="group flex flex-col bg-stone-50 rounded-sm overflow-hidden border border-stone-100 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
           <div class="relative aspect-[4/3] overflow-hidden">
              <img 
-                src={event.image} 
+                src={getImagePath(event.image)} 
                 alt={event.name}
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"

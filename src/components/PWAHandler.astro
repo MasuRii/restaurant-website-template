@@ -3,7 +3,10 @@ import { useTranslations } from '../lib/i18n';
 
 const { currentLocale } = Astro;
 const t = useTranslations(currentLocale || 'en');
-const base = import.meta.env.BASE_URL;
+// Ensure base URL ends with a slash
+const base = import.meta.env.BASE_URL.endsWith('/') 
+  ? import.meta.env.BASE_URL 
+  : import.meta.env.BASE_URL + '/';
 
 // Strings for the install prompt
 const strings = {

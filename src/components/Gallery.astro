@@ -7,6 +7,10 @@ import type { ImageMetadata } from 'astro';
 
 const { t } = i18next;
 
+// Ensure base URL ends with a slash for fallback paths
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+
 // Import all gallery images from assets
 const imageFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/images/gallery/*.jpg', { eager: true });
 
@@ -22,7 +26,9 @@ const optimizedImages = await Promise.all(
 
     if (!imageMetadata) {
       console.warn(`Image not found in assets: ${imagePath}`);
-      return image; // Fallback to original path if not found
+      // Fallback: prefix with base URL for public folder images
+      const cleanPath = image.src.startsWith('/') ? image.src.slice(1) : image.src;
+      return { ...image, src: `${base}${cleanPath}` };
     }
 
     const optimized = await getImage({
