@@ -11,7 +11,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "test": "bun test tests/unit",
-    "test:e2e": "bunx playwright test"
+    "test:e2e": "bunx playwright test",
+    "deploy": "bunx vercel --prod"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
