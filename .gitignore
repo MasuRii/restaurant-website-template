@@ -33,3 +33,6 @@ ralph*
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# lighthouse reports
+lighthouse-report.*

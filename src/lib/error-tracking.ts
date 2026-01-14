@@ -11,7 +11,7 @@ type ErrorLevel = 'info' | 'warning' | 'error';
  * @param error The error object to capture
  * @param context Optional context object with additional details
  */
-export function captureError(error: Error, context?: Record<string, any>): void {
+export function captureError(error: Error, context?: Record<string, unknown>): void {
   // In a real implementation, this would send to Sentry/LogRocket/etc.
   if (import.meta.env.DEV) {
     console.group('🚨 Error Captured');

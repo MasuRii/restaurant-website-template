@@ -45,7 +45,7 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="p-4 rounded-md bg-red-50 border border-red-200 text-red-800">
           <h2 className="text-lg font-semibold mb-2">Something went wrong</h2>
-          <p className="text-sm mb-4">We're sorry, but we were unable to load this section.</p>
+          <p className="text-sm mb-4">We&apos;re sorry, but we were unable to load this section.</p>
           <button
             onClick={() => this.setState({ hasError: false })}
             className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors text-sm"

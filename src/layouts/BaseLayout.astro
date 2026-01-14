@@ -155,7 +155,7 @@ const siteDescription = description || t('site.description');
             // Add delay if specified
             const delay = entry.target.getAttribute('data-delay');
             if (delay) {
-              entry.target.style.transitionDelay = `${delay}ms`;
+              (entry.target as HTMLElement).style.transitionDelay = `${delay}ms`;
             }
             entry.target.classList.add('revealed');
             observer.unobserve(entry.target);
@@ -187,7 +187,7 @@ const siteDescription = description || t('site.description');
                    // We limit the offset to avoid elements flying off too far
                    const offset = scrolled * speed;
                    // Use translate3d for hardware acceleration
-                   el.style.transform = `translate3d(0, ${offset}px, 0)`;
+                   (el as HTMLElement).style.transform = `translate3d(0, ${offset}px, 0)`;
                 }
               });
             }, { passive: true });
