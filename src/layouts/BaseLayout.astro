@@ -133,6 +133,10 @@ const siteDescription = description || t('site.description');
 
     <script>
       import { trackPageView } from '../lib/analytics';
+      import { initErrorTracking } from '../lib/error-tracking';
+      
+      // Initialize error tracking
+      initErrorTracking();
       
       // Track initial page view
       trackPageView(window.location.pathname);

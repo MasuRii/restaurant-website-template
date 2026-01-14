@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { trackReservation } from '../lib/analytics';
+import { ErrorBoundary } from './ErrorBoundary';
 
 interface ReservationFormProps {
   labels: {
@@ -21,7 +22,7 @@ interface ReservationFormProps {
   };
 }
 
-export default function ReservationForm({ labels, messages }: ReservationFormProps) {
+function ReservationFormContent({ labels, messages }: ReservationFormProps) {
   const [formData, setFormData] = useState({
     date: '',
     time: '',
@@ -354,5 +355,13 @@ export default function ReservationForm({ labels, messages }: ReservationFormPro
         <div className="mt-4 text-red-600 text-sm text-center">{labels.error}</div>
       )}
     </form>
+  );
+}
+
+export default function ReservationForm(props: ReservationFormProps) {
+  return (
+    <ErrorBoundary context="ReservationForm">
+      <ReservationFormContent {...props} />
+    </ErrorBoundary>
   );
 }
