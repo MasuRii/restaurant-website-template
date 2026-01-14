@@ -29,10 +29,19 @@ const t = useTranslations(Astro.currentLocale || 'en');
 </a>
 
 <script>
+  import { trackEvent } from '../lib/analytics';
+
   const floatingCta = document.getElementById('floating-cta');
   const hero = document.getElementById('hero');
 
+  if (floatingCta) {
+    floatingCta.addEventListener('click', () => {
+      trackEvent('CTA', 'Click', 'Floating Reserve');
+    });
+  }
+
   if (floatingCta && hero) {
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

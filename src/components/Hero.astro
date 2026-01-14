@@ -92,3 +92,22 @@ const t = useTranslations(Astro.currentLocale || 'en');
     animation: fade-in-up 1s ease-out forwards;
   }
 </style>
+
+<script>
+  import { trackEvent } from '../lib/analytics';
+
+  const hero = document.getElementById('hero');
+  if (hero) {
+    const reserveLink = hero.querySelector('a[href="#reservations"]');
+    const menuLink = hero.querySelector('a[href="#menu"]');
+
+    reserveLink?.addEventListener('click', () => {
+      trackEvent('CTA', 'Click', 'Hero - Reserve');
+    });
+
+    menuLink?.addEventListener('click', () => {
+      trackEvent('CTA', 'Click', 'Hero - View Menu');
+    });
+  }
+</script>
+

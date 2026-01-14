@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { trackReservation } from '../lib/analytics';
 
 interface ReservationFormProps {
   labels: {
@@ -50,6 +51,7 @@ export default function ReservationForm({ labels, messages }: ReservationFormPro
     // Basic validation simulation
     if (formData.name && formData.email && formData.date && formData.time) {
       setStatus('success');
+      trackReservation();
     } else {
       setStatus('error');
     }

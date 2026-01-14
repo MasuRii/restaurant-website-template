@@ -132,7 +132,13 @@ const siteDescription = description || t('site.description');
     <PWAHandler />
 
     <script>
+      import { trackPageView } from '../lib/analytics';
+      
+      // Track initial page view
+      trackPageView(window.location.pathname);
+
       // Fade-in animation
+
       const observerOptions = {
         root: null,
         rootMargin: '0px',
