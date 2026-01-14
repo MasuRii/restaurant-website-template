@@ -29,7 +29,9 @@ test.describe('Demo Disclaimer Modal', () => {
     // This bypasses potential overlay issues and ensures the event is fired
     await instagramLink.dispatchEvent('click', { bubbles: true, cancelable: true });
 
-    const modal = page.locator('div[role="dialog"][aria-modal="true"]');
+    const modal = page.locator(
+      'div[role="dialog"][aria-modal="true"][aria-labelledby="demo-modal-title"]'
+    );
     await expect(modal).toBeVisible();
     await expect(modal).toContainText(strings.demoDisclaimer.title);
   });
@@ -42,7 +44,9 @@ test.describe('Demo Disclaimer Modal', () => {
     await expect(emailLink).toBeVisible();
     await emailLink.dispatchEvent('click', { bubbles: true, cancelable: true });
 
-    const modal = page.locator('div[role="dialog"][aria-modal="true"]');
+    const modal = page.locator(
+      'div[role="dialog"][aria-modal="true"][aria-labelledby="demo-modal-title"]'
+    );
     await expect(modal).toBeVisible();
   });
 
@@ -54,7 +58,9 @@ test.describe('Demo Disclaimer Modal', () => {
     await expect(phoneLink).toBeVisible();
     await phoneLink.dispatchEvent('click', { bubbles: true, cancelable: true });
 
-    const modal = page.locator('div[role="dialog"][aria-modal="true"]');
+    const modal = page.locator(
+      'div[role="dialog"][aria-modal="true"][aria-labelledby="demo-modal-title"]'
+    );
     await expect(modal).toBeVisible();
   });
 
@@ -68,7 +74,9 @@ test.describe('Demo Disclaimer Modal', () => {
     await expect(mapLink).toBeVisible();
     await mapLink.dispatchEvent('click', { bubbles: true, cancelable: true });
 
-    const modal = page.locator('div[role="dialog"][aria-modal="true"]');
+    const modal = page.locator(
+      'div[role="dialog"][aria-modal="true"][aria-labelledby="demo-modal-title"]'
+    );
     await expect(modal).toBeVisible();
   });
 
@@ -80,7 +88,9 @@ test.describe('Demo Disclaimer Modal', () => {
       .first()
       .dispatchEvent('click', { bubbles: true, cancelable: true });
 
-    const modal = page.locator('div[role="dialog"][aria-modal="true"]');
+    const modal = page.locator(
+      'div[role="dialog"][aria-modal="true"][aria-labelledby="demo-modal-title"]'
+    );
     await expect(modal).toBeVisible();
 
     await modal.getByRole('button', { name: strings.demoDisclaimer.iUnderstand }).click();
@@ -95,7 +105,9 @@ test.describe('Demo Disclaimer Modal', () => {
       .first()
       .dispatchEvent('click', { bubbles: true, cancelable: true });
 
-    const modal = page.locator('div[role="dialog"][aria-modal="true"]');
+    const modal = page.locator(
+      'div[role="dialog"][aria-modal="true"][aria-labelledby="demo-modal-title"]'
+    );
     await expect(modal).toBeVisible();
 
     await modal.locator('input[type="checkbox"]').check();
@@ -122,7 +134,9 @@ test.describe('Demo Disclaimer Modal', () => {
     await expect(link).toBeVisible();
     await link.dispatchEvent('click', { bubbles: true, cancelable: true });
 
-    const modal = page.locator('div[role="dialog"][aria-modal="true"]');
+    const modal = page.locator(
+      'div[role="dialog"][aria-modal="true"][aria-labelledby="demo-modal-title"]'
+    );
     await expect(modal).not.toBeVisible({ timeout: 2000 });
   });
 
@@ -138,7 +152,9 @@ test.describe('Demo Disclaimer Modal', () => {
       await menuLink.dispatchEvent('click', { bubbles: true, cancelable: true });
     }
 
-    const modal = page.locator('div[role="dialog"][aria-modal="true"]');
+    const modal = page.locator(
+      'div[role="dialog"][aria-modal="true"][aria-labelledby="demo-modal-title"]'
+    );
     await expect(modal).not.toBeVisible({ timeout: 1000 });
   });
 });
