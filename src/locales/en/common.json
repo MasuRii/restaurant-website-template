@@ -214,6 +214,12 @@
     "close": "Close",
     "orderNow": "Order Now"
   },
+  "error404": {
+    "title": "Off the Map",
+    "description": "It seems you've wandered off the path. The page you are looking for has not been found.",
+    "returnHome": "Return Home",
+    "reserveTable": "Reserve a Table"
+  },
   "demoDisclaimer": {
     "title": "This is a Demo Website",
     "description": "You are viewing a sample restaurant website template. The link you clicked is a placeholder and does not lead to a real destination. This restaurant (Risū & Oak) is fictional and created for demonstration purposes only.",
