@@ -7,30 +7,38 @@ const footerData = t('footer', { returnObjects: true }); // Fallback/Consistent 
 
 const address = locationData.address || footerData.contact.address;
 const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+
+// Restaurant coordinates (123 Mission St, San Francisco, CA)
+const lat = 37.7914;
+const lng = -122.3929;
 ---
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
 <section id="location" class="py-24 md:py-32 bg-alabaster text-charcoal">
   <div class="max-w-7xl mx-auto px-4 md:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
       
       <!-- Map Side -->
-      <div class="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square bg-stone-200 rounded-lg overflow-hidden shadow-lg group reveal-on-scroll">
-        <!-- Static Map Placeholder (In a real app, use a static map image API here) -->
-        <div class="absolute inset-0 bg-stone-300 flex items-center justify-center">
-            <span class="text-charcoal/40 font-serif italic text-lg">Interactive Map Loading...</span>
-        </div>
+      <div class="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square bg-stone-200 rounded-lg overflow-hidden shadow-lg reveal-on-scroll">
+        <!-- Leaflet Map Container -->
+        <div id="restaurant-map" class="absolute inset-0 z-0"></div>
         
-        <!-- Overlay/Link -->
+        <!-- Floating Google Maps Link -->
         <a 
           href={mapUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="absolute inset-0 bg-charcoal/10 group-hover:bg-charcoal/20 transition-colors duration-300 flex items-center justify-center"
+          class="absolute bottom-4 right-4 z-10 bg-white/95 backdrop-blur text-charcoal px-4 py-2 rounded-full font-medium shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 text-sm flex items-center gap-2"
           aria-label="View location on Google Maps"
         >
-          <span class="bg-white/90 backdrop-blur text-charcoal px-6 py-3 rounded-full font-medium shadow-md transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-            View on Google Maps
-          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+          Open in Google Maps
         </a>
       </div>
 
@@ -111,3 +119,95 @@ const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURICompo
     </div>
   </div>
 </section>
+
+<!-- Leaflet JS -->
+<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script is:inline define:vars={{ lat, lng, address }}>
+  // Initialize map when DOM is ready
+  function initMap() {
+    const mapContainer = document.getElementById('restaurant-map');
+    if (!mapContainer || mapContainer.dataset.initialized) return;
+    
+    // Mark as initialized to prevent duplicate initialization
+    mapContainer.dataset.initialized = 'true';
+    
+    // Create map centered on restaurant location
+    const map = L.map('restaurant-map', {
+      scrollWheelZoom: false, // Disable scroll zoom for better UX
+      zoomControl: true
+    }).setView([lat, lng], 16);
+    
+    // Add OpenStreetMap tiles (free, no API key required)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    
+    // Custom marker icon
+    const restaurantIcon = L.divIcon({
+      className: 'custom-marker',
+      html: `<div style="
+        background: #C45D3E;
+        width: 32px;
+        height: 32px;
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(-45deg);
+        border: 3px solid white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      ">
+        <span style="transform: rotate(45deg); color: white; font-size: 14px;">★</span>
+      </div>`,
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+    
+    // Add marker
+    const marker = L.marker([lat, lng], { icon: restaurantIcon }).addTo(map);
+    
+    // Add popup
+    marker.bindPopup(`
+      <div style="text-align: center; padding: 8px;">
+        <strong style="font-size: 14px;">Risū & Oak</strong><br>
+        <span style="font-size: 12px; color: #666;">${address}</span>
+      </div>
+    `).openPopup();
+    
+    // Enable scroll zoom on map focus
+    map.on('focus', () => map.scrollWheelZoom.enable());
+    map.on('blur', () => map.scrollWheelZoom.disable());
+  }
+  
+  // Initialize on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMap);
+  } else {
+    initMap();
+  }
+  
+  // Also initialize on Astro view transitions
+  document.addEventListener('astro:page-load', initMap);
+</script>
+
+<style>
+  /* Fix Leaflet z-index issues */
+  #restaurant-map {
+    z-index: 1;
+  }
+  
+  /* Style the attribution */
+  :global(.leaflet-control-attribution) {
+    font-size: 10px !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+  }
+  
+  /* Custom marker animation */
+  :global(.custom-marker) {
+    background: transparent !important;
+    border: none !important;
+  }
+</style>
