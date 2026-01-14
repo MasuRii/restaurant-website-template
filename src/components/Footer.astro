@@ -5,24 +5,24 @@ const t = useTranslations(Astro.currentLocale || 'en');
 const currentYear = new Date().getFullYear();
 ---
 
-<footer id="contact" class="bg-primary text-alabaster py-16">
+<footer id="contact" class="bg-primary dark:bg-charcoal-dark text-alabaster dark:text-alabaster py-16">
   <div class="container mx-auto px-4">
     <!-- Newsletter Section -->
-    <div class="flex flex-col md:flex-row items-center justify-between border-b border-alabaster/10 pb-12 mb-12 gap-8">
+    <div class="flex flex-col md:flex-row items-center justify-between border-b border-alabaster/10 dark:border-alabaster/10 pb-12 mb-12 gap-8">
       <div class="text-center md:text-left">
         <h3 class="font-serif text-2xl md:text-3xl mb-2">{t('footer.newsletter.heading')}</h3>
-        <p class="text-alabaster/60 text-sm">Get exclusive updates and event invitations.</p>
+        <p class="text-alabaster/60 dark:text-alabaster/60 text-sm">Get exclusive updates and event invitations.</p>
       </div>
       <form class="flex w-full md:w-auto max-w-md gap-2" onsubmit="event.preventDefault();">
         <input 
           type="email" 
           placeholder={t('footer.newsletter.placeholder')} 
-          class="flex-1 px-4 py-3 bg-alabaster/5 border border-alabaster/10 rounded-sm text-alabaster placeholder:text-alabaster/40 focus:outline-none focus:border-secondary transition-colors"
+          class="flex-1 px-4 py-3 bg-alabaster/5 dark:bg-alabaster/5 border border-alabaster/10 dark:border-alabaster/10 rounded-sm text-alabaster dark:text-alabaster placeholder:text-alabaster/40 dark:placeholder:text-alabaster/40 focus:outline-none focus:border-secondary transition-colors"
           required
         />
         <button 
           type="submit" 
-          class="px-6 py-3 bg-alabaster text-primary font-medium rounded-sm hover:bg-secondary hover:text-alabaster transition-colors duration-300"
+          class="px-6 py-3 bg-secondary dark:bg-secondary text-alabaster dark:text-alabaster font-medium rounded-sm hover:bg-secondary/90 hover:text-alabaster dark:hover:bg-secondary/90 dark:hover:text-alabaster transition-colors duration-300"
         >
           {t('footer.newsletter.button')}
         </button>
@@ -36,7 +36,7 @@ const currentYear = new Date().getFullYear();
         <a href="/" class="text-2xl font-serif font-bold tracking-tight inline-block">
           {t('site.title')}
         </a>
-        <p class="text-alabaster/60 text-sm leading-relaxed max-w-xs">
+        <p class="text-alabaster/60 dark:text-alabaster/60 text-sm leading-relaxed max-w-xs">
           {t('site.description')}
         </p>
       </div>
@@ -45,22 +45,22 @@ const currentYear = new Date().getFullYear();
       <div>
         <h4 class="font-serif text-lg mb-6">{t('nav.home')}</h4>
         <nav class="flex flex-col space-y-3">
-          <a href="#story" class="text-alabaster/70 hover:text-secondary transition-colors">{t('nav.story')}</a>
-          <a href="#menu" class="text-alabaster/70 hover:text-secondary transition-colors">{t('nav.menu')}</a>
-          <a href="#events" class="text-alabaster/70 hover:text-secondary transition-colors">{t('nav.privateDining')}</a>
-          <a href="#location" class="text-alabaster/70 hover:text-secondary transition-colors">{t('nav.location')}</a>
-          <a href="#reservations" class="text-alabaster/70 hover:text-secondary transition-colors">{t('nav.reservations')}</a>
+          <a href="#story" class="text-alabaster/70 dark:text-alabaster/70 hover:text-secondary transition-colors">{t('nav.story')}</a>
+          <a href="#menu" class="text-alabaster/70 dark:text-alabaster/70 hover:text-secondary transition-colors">{t('nav.menu')}</a>
+          <a href="#events" class="text-alabaster/70 dark:text-alabaster/70 hover:text-secondary transition-colors">{t('nav.privateDining')}</a>
+          <a href="#location" class="text-alabaster/70 dark:text-alabaster/70 hover:text-secondary transition-colors">{t('nav.location')}</a>
+          <a href="#reservations" class="text-alabaster/70 dark:text-alabaster/70 hover:text-secondary transition-colors">{t('nav.reservations')}</a>
         </nav>
       </div>
 
       <!-- Contact & Hours -->
       <div>
         <h4 class="font-serif text-lg mb-6">{t('footer.contact.heading')}</h4>
-        <div class="space-y-4 text-alabaster/70 text-sm">
+        <div class="space-y-4 text-alabaster/70 dark:text-alabaster/70 text-sm">
           <p>{t('footer.contact.address')}</p>
           <p><a href="tel:+14155550123" class="hover:text-secondary transition-colors">{t('footer.contact.phone')}</a></p>
           <p><a href="mailto:hello@risuandoak.com" class="hover:text-secondary transition-colors">{t('footer.contact.email')}</a></p>
-          <div class="pt-2 border-t border-alabaster/10 mt-4">
+          <div class="pt-2 border-t border-alabaster/10 dark:border-alabaster/10 mt-4">
             <p class="mt-4">{t('footer.hours.weekdays')}</p>
             <p>{t('footer.hours.happyHour')}</p>
           </div>
@@ -71,10 +71,10 @@ const currentYear = new Date().getFullYear();
       <div>
         <h4 class="font-serif text-lg mb-6">{t('footer.social.heading')}</h4>
         <div class="flex gap-4">
-          <a href="https://instagram.com/risuandoak" target="_blank" rel="noopener noreferrer" aria-label={t('footer.social.instagram')} class="w-10 h-10 flex items-center justify-center rounded-full bg-alabaster/5 hover:bg-secondary hover:text-alabaster transition-colors duration-300">
+          <a href="https://instagram.com/risuandoak" target="_blank" rel="noopener noreferrer" aria-label={t('footer.social.instagram')} class="w-10 h-10 flex items-center justify-center rounded-full bg-alabaster/5 dark:bg-alabaster/5 hover:bg-secondary hover:text-alabaster transition-colors duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
           </a>
-          <a href="https://tiktok.com/@risuandoak" target="_blank" rel="noopener noreferrer" aria-label={t('footer.social.tiktok')} class="w-10 h-10 flex items-center justify-center rounded-full bg-alabaster/5 hover:bg-secondary hover:text-alabaster transition-colors duration-300">
+          <a href="https://tiktok.com/@risuandoak" target="_blank" rel="noopener noreferrer" aria-label={t('footer.social.tiktok')} class="w-10 h-10 flex items-center justify-center rounded-full bg-alabaster/5 dark:bg-alabaster/5 hover:bg-secondary hover:text-alabaster transition-colors duration-300">
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
           </a>
         </div>
@@ -82,11 +82,11 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Copyright -->
-    <div class="pt-8 border-t border-alabaster/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-alabaster/40">
+    <div class="pt-8 border-t border-alabaster/10 dark:border-alabaster/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-alabaster/40 dark:text-alabaster/40">
       <p>{t('footer.legal.copyright').replace('{{year}}', currentYear.toString())}</p>
       <div class="flex gap-6">
-        <a href="#" class="hover:text-alabaster transition-colors">{t('footer.legal.privacy')}</a>
-        <a href="#" class="hover:text-alabaster transition-colors">{t('footer.legal.terms')}</a>
+        <a href="#" class="hover:text-alabaster dark:hover:text-alabaster transition-colors">{t('footer.legal.privacy')}</a>
+        <a href="#" class="hover:text-alabaster dark:hover:text-alabaster transition-colors">{t('footer.legal.terms')}</a>
       </div>
     </div>
   </div>

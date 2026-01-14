@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* Enable class-based dark mode (using .dark class on html element) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Fonts */
   --font-serif: 'Playfair Display', serif;
@@ -53,7 +56,9 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
     scroll-behavior: smooth;
     scroll-padding-top: 5rem; /* Match header height (h-20 = 5rem) */
   }
@@ -73,7 +78,9 @@
   .reveal-on-scroll {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
     will-change: opacity, transform;
   }
 
@@ -104,11 +111,11 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-alabaster px-8 py-3 rounded-full font-medium text-lg hover:bg-primary/90 transition-transform duration-300 ease-out hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-secondary/50 focus-visible:rounded-sm shadow-lg cursor-pointer inline-flex items-center justify-center dark:bg-alabaster dark:text-primary dark:hover:bg-alabaster/90;
+    @apply bg-primary text-alabaster px-8 py-3 rounded-full font-medium text-lg hover:bg-primary/90 transition-transform duration-300 ease-out hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-secondary/50 focus-visible:rounded-sm shadow-lg cursor-pointer inline-flex items-center justify-center dark:bg-secondary dark:text-charcoal-dark dark:hover:bg-secondary/90;
   }
 
   .btn-secondary {
-    @apply border-2 border-primary text-primary px-8 py-3 rounded-full font-medium text-lg hover:bg-primary hover:text-alabaster transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-secondary/50 focus-visible:rounded-sm cursor-pointer inline-flex items-center justify-center dark:border-alabaster dark:text-alabaster dark:hover:bg-alabaster dark:hover:text-primary;
+    @apply border-2 border-primary text-primary px-8 py-3 rounded-full font-medium text-lg hover:bg-primary hover:text-alabaster transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-secondary/50 focus-visible:rounded-sm cursor-pointer inline-flex items-center justify-center dark:border-secondary dark:text-secondary dark:hover:bg-secondary dark:hover:text-charcoal-dark;
   }
 
   .btn-ghost {

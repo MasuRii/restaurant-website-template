@@ -56,7 +56,7 @@ test.describe('Navigation', () => {
 
     // Close menu - force click using JS evaluation to bypass viewport checks
     // which can be flaky on mobile emulation with full-screen fixed overlays
-    await closeBtn.evaluate((node) => node.click());
+    await closeBtn.evaluate((node) => (node as HTMLElement).click());
 
     await expect(mobileMenu).toHaveClass(/translate-x-full/);
     await expect(openBtn).toHaveAttribute('aria-expanded', 'false');
@@ -79,7 +79,7 @@ test.describe('Navigation', () => {
     await expect(storyLink).toBeVisible();
 
     // Force click using JS evaluation
-    await storyLink.evaluate((node) => node.click());
+    await storyLink.evaluate((node) => (node as HTMLElement).click());
 
     // Menu should close
     await expect(mobileMenu).toHaveClass(/translate-x-full/);

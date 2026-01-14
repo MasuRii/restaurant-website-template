@@ -1,4 +1,4 @@
-import React, { Component, type ErrorInfo, type ReactNode } from 'react';
+import { Component, type ErrorInfo, type ReactNode } from 'react';
 import { captureError } from '../lib/error-tracking';
 
 interface Props {
@@ -43,7 +43,7 @@ export class ErrorBoundary extends Component<Props, State> {
       }
 
       return (
-        <div className="p-4 rounded-md bg-red-50 border border-red-200 text-red-800">
+        <div className="p-4 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200">
           <h2 className="text-lg font-semibold mb-2">Something went wrong</h2>
           <p className="text-sm mb-4">We&apos;re sorry, but we were unable to load this section.</p>
           <button

@@ -1,8 +1,4 @@
 ---
-import { useTranslations } from '../lib/i18n';
-
-const { currentLocale } = Astro;
-const t = useTranslations(currentLocale || 'en');
 // Ensure base URL ends with a slash
 const base = import.meta.env.BASE_URL.endsWith('/') 
   ? import.meta.env.BASE_URL 
@@ -36,7 +32,7 @@ const strings = {
   </div>
 </div>
 
-<script define:vars={{ base }}>
+<script is:inline define:vars={{ base }}>
   // Service Worker Registration
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {

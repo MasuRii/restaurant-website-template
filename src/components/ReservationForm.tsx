@@ -66,8 +66,8 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
 
   if (status === 'success') {
     return (
-      <div className="w-full max-w-lg mx-auto p-8 bg-alabaster rounded-sm border border-charcoal/10 text-center animate-[fadeIn_0.5s_ease-out]">
-        <div className="w-16 h-16 bg-charcoal text-alabaster rounded-full flex items-center justify-center mx-auto mb-6">
+      <div className="w-full max-w-lg mx-auto p-8 bg-alabaster dark:bg-charcoal rounded-sm border border-charcoal/10 dark:border-alabaster/10 text-center animate-[fadeIn_0.5s_ease-out]">
+        <div className="w-16 h-16 bg-charcoal dark:bg-alabaster text-alabaster dark:text-charcoal rounded-full flex items-center justify-center mx-auto mb-6">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-8 w-8"
@@ -78,11 +78,11 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-2xl font-serif text-charcoal mb-4">Confirmed</h3>
-        <p className="text-charcoal/80 mb-6">{labels.success}</p>
+        <h3 className="text-2xl font-serif text-charcoal dark:text-alabaster mb-4">Confirmed</h3>
+        <p className="text-charcoal/80 dark:text-alabaster/80 mb-6">{labels.success}</p>
         <button
           onClick={() => setStatus('idle')}
-          className="text-xs uppercase tracking-widest border-b border-charcoal/40 hover:border-charcoal text-charcoal/60 hover:text-charcoal transition-all"
+          className="text-xs uppercase tracking-widest border-b border-charcoal/40 dark:border-alabaster/40 hover:border-charcoal dark:hover:border-alabaster text-charcoal/60 dark:text-alabaster/60 hover:text-charcoal dark:hover:text-alabaster transition-all"
         >
           Make another reservation
         </button>
@@ -127,7 +127,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
         <div className="flex flex-col">
           <label
             htmlFor="date"
-            className="text-xs uppercase tracking-widest text-charcoal/60 mb-2 font-medium"
+            className="text-xs uppercase tracking-widest text-charcoal/60 dark:text-alabaster/60 mb-2 font-medium"
           >
             {labels.date}
           </label>
@@ -138,7 +138,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
             required
             value={formData.date}
             onChange={handleChange}
-            className="w-full bg-white border border-charcoal/20 px-4 py-3 rounded-sm focus:border-charcoal focus:outline-none transition-colors font-serif text-charcoal"
+            className="w-full bg-white dark:bg-charcoal border border-charcoal/20 dark:border-alabaster/20 px-4 py-3 rounded-sm focus:border-charcoal dark:focus:border-alabaster focus:outline-none transition-colors font-serif text-charcoal dark:text-alabaster"
           />
         </div>
 
@@ -146,7 +146,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
         <div className="flex flex-col">
           <label
             htmlFor="time"
-            className="text-xs uppercase tracking-widest text-charcoal/60 mb-2 font-medium"
+            className="text-xs uppercase tracking-widest text-charcoal/60 dark:text-alabaster/60 mb-2 font-medium"
           >
             {labels.time}
           </label>
@@ -157,7 +157,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
               required
               value={formData.time}
               onChange={handleChange}
-              className="w-full bg-white border border-charcoal/20 px-4 py-3 rounded-sm focus:border-charcoal focus:outline-none transition-colors font-serif text-charcoal appearance-none cursor-pointer"
+              className="w-full bg-white dark:bg-charcoal border border-charcoal/20 dark:border-alabaster/20 px-4 py-3 rounded-sm focus:border-charcoal dark:focus:border-alabaster focus:outline-none transition-colors font-serif text-charcoal dark:text-alabaster appearance-none cursor-pointer"
             >
               <option value="" disabled>
                 Select time
@@ -168,7 +168,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
                 </option>
               ))}
             </select>
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-charcoal/40">
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-charcoal/40 dark:text-alabaster/40">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-4 w-4"
@@ -191,7 +191,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
         <div className="flex flex-col">
           <label
             htmlFor="guests"
-            className="text-xs uppercase tracking-widest text-charcoal/60 mb-2 font-medium"
+            className="text-xs uppercase tracking-widest text-charcoal/60 dark:text-alabaster/60 mb-2 font-medium"
           >
             {labels.guests}
           </label>
@@ -202,7 +202,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
               required
               value={formData.guests}
               onChange={handleChange}
-              className="w-full bg-white border border-charcoal/20 px-4 py-3 rounded-sm focus:border-charcoal focus:outline-none transition-colors font-serif text-charcoal appearance-none cursor-pointer"
+              className="w-full bg-white dark:bg-charcoal border border-charcoal/20 dark:border-alabaster/20 px-4 py-3 rounded-sm focus:border-charcoal dark:focus:border-alabaster focus:outline-none transition-colors font-serif text-charcoal dark:text-alabaster appearance-none cursor-pointer"
             >
               {[...Array(12)].map((_, i) => (
                 <option key={i + 1} value={i + 1}>
@@ -211,7 +211,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
               ))}
               <option value="13+">13+ (Call us)</option>
             </select>
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-charcoal/40">
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-charcoal/40 dark:text-alabaster/40">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-4 w-4"
@@ -236,7 +236,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
         <div className="flex flex-col">
           <label
             htmlFor="name"
-            className="text-xs uppercase tracking-widest text-charcoal/60 mb-2 font-medium"
+            className="text-xs uppercase tracking-widest text-charcoal/60 dark:text-alabaster/60 mb-2 font-medium"
           >
             {labels.name}
           </label>
@@ -248,7 +248,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
             value={formData.name}
             onChange={handleChange}
             placeholder="Jane Doe"
-            className="w-full bg-white border border-charcoal/20 px-4 py-3 rounded-sm focus:border-charcoal focus:outline-none transition-colors font-sans text-charcoal placeholder:text-charcoal/30"
+            className="w-full bg-white dark:bg-charcoal border border-charcoal/20 dark:border-alabaster/20 px-4 py-3 rounded-sm focus:border-charcoal dark:focus:border-alabaster focus:outline-none transition-colors font-sans text-charcoal dark:text-alabaster placeholder:text-charcoal/30 dark:placeholder:text-alabaster/30"
           />
         </div>
 
@@ -256,7 +256,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
         <div className="flex flex-col">
           <label
             htmlFor="email"
-            className="text-xs uppercase tracking-widest text-charcoal/60 mb-2 font-medium"
+            className="text-xs uppercase tracking-widest text-charcoal/60 dark:text-alabaster/60 mb-2 font-medium"
           >
             {labels.email}
           </label>
@@ -268,7 +268,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
             value={formData.email}
             onChange={handleChange}
             placeholder="jane@example.com"
-            className="w-full bg-white border border-charcoal/20 px-4 py-3 rounded-sm focus:border-charcoal focus:outline-none transition-colors font-sans text-charcoal placeholder:text-charcoal/30"
+            className="w-full bg-white dark:bg-charcoal border border-charcoal/20 dark:border-alabaster/20 px-4 py-3 rounded-sm focus:border-charcoal dark:focus:border-alabaster focus:outline-none transition-colors font-sans text-charcoal dark:text-alabaster placeholder:text-charcoal/30 dark:placeholder:text-alabaster/30"
           />
         </div>
       </div>
@@ -278,7 +278,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
         <div className="flex flex-col">
           <label
             htmlFor="phone"
-            className="text-xs uppercase tracking-widest text-charcoal/60 mb-2 font-medium"
+            className="text-xs uppercase tracking-widest text-charcoal/60 dark:text-alabaster/60 mb-2 font-medium"
           >
             {labels.phone}
           </label>
@@ -290,7 +290,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
             value={formData.phone}
             onChange={handleChange}
             placeholder="(555) 555-5555"
-            className="w-full bg-white border border-charcoal/20 px-4 py-3 rounded-sm focus:border-charcoal focus:outline-none transition-colors font-sans text-charcoal placeholder:text-charcoal/30"
+            className="w-full bg-white dark:bg-charcoal border border-charcoal/20 dark:border-alabaster/20 px-4 py-3 rounded-sm focus:border-charcoal dark:focus:border-alabaster focus:outline-none transition-colors font-sans text-charcoal dark:text-alabaster placeholder:text-charcoal/30 dark:placeholder:text-alabaster/30"
           />
         </div>
 
@@ -298,7 +298,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
         <div className="flex flex-col">
           <label
             htmlFor="requests"
-            className="text-xs uppercase tracking-widest text-charcoal/60 mb-2 font-medium"
+            className="text-xs uppercase tracking-widest text-charcoal/60 dark:text-alabaster/60 mb-2 font-medium"
           >
             {labels.requests}
           </label>
@@ -309,17 +309,17 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
             onChange={handleChange}
             rows={1}
             placeholder="Allergies, special occasions..."
-            className="w-full bg-white border border-charcoal/20 px-4 py-3 rounded-sm focus:border-charcoal focus:outline-none transition-colors font-sans text-charcoal placeholder:text-charcoal/30 resize-none h-[50px]"
+            className="w-full bg-white dark:bg-charcoal border border-charcoal/20 dark:border-alabaster/20 px-4 py-3 rounded-sm focus:border-charcoal dark:focus:border-alabaster focus:outline-none transition-colors font-sans text-charcoal dark:text-alabaster placeholder:text-charcoal/30 dark:placeholder:text-alabaster/30 resize-none h-[50px]"
           />
         </div>
       </div>
 
       {/* Trust & Urgency */}
-      <div className="flex flex-col md:flex-row justify-between items-center mb-8 text-sm text-charcoal/60 gap-4">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8 text-sm text-charcoal/60 dark:text-alabaster/60 gap-4">
         <div className="flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4 text-amber-700"
+            className="h-4 w-4 text-amber-700 dark:text-gold"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -331,7 +331,9 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
               d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <span className="text-amber-900/80 font-medium italic">{messages.urgency}</span>
+          <span className="text-amber-900/80 dark:text-gold/80 font-medium italic">
+            {messages.urgency}
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <svg
@@ -356,7 +358,7 @@ function ReservationFormContent({ labels, messages }: ReservationFormProps) {
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="bg-charcoal text-alabaster px-10 py-4 text-sm uppercase tracking-widest font-medium hover:bg-charcoal/90 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed w-full md:w-auto min-w-[200px]"
+          className="bg-charcoal dark:bg-alabaster text-alabaster dark:text-charcoal px-10 py-4 text-sm uppercase tracking-widest font-medium hover:bg-charcoal/90 dark:hover:bg-alabaster/90 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed w-full md:w-auto min-w-[200px]"
         >
           {status === 'submitting' ? labels.submitting : labels.submit}
         </button>

@@ -1,7 +1,4 @@
 ---
-import { useTranslations } from '../lib/i18n';
-
-const t = useTranslations(Astro.currentLocale || 'en');
 // Ensure base URL ends with a slash
 const base = import.meta.env.BASE_URL.endsWith('/') 
   ? import.meta.env.BASE_URL 
@@ -21,11 +18,11 @@ const posts = [
 <section class="py-16 bg-background overflow-hidden reveal-on-scroll">
   <div class="container mx-auto px-4 mb-10 text-center">
     <div class="flex items-center justify-center gap-2 mb-2">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-charcoal/60"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-      <span class="text-sm font-sans uppercase tracking-widest text-charcoal/60">@risuandoak</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-charcoal/60 dark:text-alabaster/60"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      <span class="text-sm font-sans uppercase tracking-widest text-charcoal/60 dark:text-alabaster/60">@risuandoak</span>
     </div>
-    <h2 class="text-3xl md:text-4xl font-serif text-charcoal mb-6">Follow the Journey</h2>
-    <a href="https://instagram.com/risuandoak" target="_blank" rel="noopener noreferrer" class="inline-block border-b border-charcoal text-charcoal hover:text-amber-900 hover:border-amber-900 transition-colors pb-1">
+    <h2 class="text-3xl md:text-4xl font-serif text-charcoal dark:text-alabaster mb-6">Follow the Journey</h2>
+    <a href="https://instagram.com/risuandoak" target="_blank" rel="noopener noreferrer" class="inline-block border-b border-charcoal dark:border-alabaster text-charcoal dark:text-alabaster hover:text-amber-900 dark:hover:text-gold hover:border-amber-900 dark:hover:border-gold transition-colors pb-1">
       View on Instagram
     </a>
   </div>

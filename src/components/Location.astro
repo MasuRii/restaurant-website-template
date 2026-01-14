@@ -1,11 +1,34 @@
 ---
 import { useTranslations } from '../lib/i18n';
 
-const t = useTranslations(Astro.currentLocale || 'en');
-const locationData = t('location', { returnObjects: true });
-const footerData = t('footer', { returnObjects: true }); // Fallback/Consistent data
+interface LocationData {
+  title?: string;
+  description?: string;
+  address?: string;
+  getDirections?: string;
+  contact?: {
+    phone?: string;
+    email?: string;
+  };
+  hours?: {
+    heading?: string;
+    weekdays?: string;
+    time?: string;
+  };
+  parking?: string;
+}
 
-const address = locationData.address || footerData.contact.address;
+interface FooterData {
+  contact?: {
+    address?: string;
+  };
+}
+
+const t = useTranslations(Astro.currentLocale || 'en');
+const locationData = t('location', { returnObjects: true }) as LocationData;
+const footerData = t('footer', { returnObjects: true }) as FooterData; // Fallback/Consistent data
+
+const address = locationData.address || footerData.contact?.address || '';
 const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 
 // Restaurant coordinates (123 Mission St, San Francisco, CA)
@@ -16,12 +39,12 @@ const lng = -122.3929;
 <!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-<section id="location" class="py-24 md:py-32 bg-alabaster text-charcoal">
+<section id="location" class="py-24 md:py-32 bg-alabaster dark:bg-charcoal-dark text-charcoal dark:text-alabaster">
   <div class="max-w-7xl mx-auto px-4 md:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
       
       <!-- Map Side -->
-      <div class="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square bg-stone-200 rounded-lg overflow-hidden shadow-lg reveal-on-scroll">
+      <div class="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square bg-stone-200 dark:bg-charcoal rounded-lg overflow-hidden shadow-lg reveal-on-scroll">
         <!-- Leaflet Map Container -->
         <div id="restaurant-map" class="absolute inset-0 z-0"></div>
         
@@ -30,7 +53,7 @@ const lng = -122.3929;
           href={mapUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="absolute bottom-4 right-4 z-10 bg-white/95 backdrop-blur text-charcoal px-4 py-2 rounded-full font-medium shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 text-sm flex items-center gap-2"
+          class="absolute bottom-4 right-4 z-10 bg-white/95 dark:bg-charcoal/95 backdrop-blur text-charcoal dark:text-alabaster px-4 py-2 rounded-full font-medium shadow-lg hover:bg-white dark:hover:bg-charcoal hover:shadow-xl transition-all duration-300 text-sm flex items-center gap-2"
           aria-label="View location on Google Maps"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -52,7 +75,7 @@ const lng = -122.3929;
           <h2 class="text-4xl md:text-5xl font-serif font-bold leading-tight">
             {locationData.title}
           </h2>
-          <p class="text-lg text-charcoal/80 leading-relaxed font-sans max-w-md">
+          <p class="text-lg text-charcoal/80 dark:text-alabaster/80 leading-relaxed font-sans max-w-md">
             {locationData.description}
           </p>
         </div>
@@ -62,34 +85,34 @@ const lng = -122.3929;
           
           <!-- Address & Contact -->
           <div class="space-y-6">
-            <h3 class="text-xl font-serif font-medium border-b border-charcoal/10 pb-2">Contact</h3>
-            <div class="space-y-4 font-sans text-charcoal/80">
+            <h3 class="text-xl font-serif font-medium border-b border-charcoal/10 dark:border-alabaster/10 pb-2">Contact</h3>
+            <div class="space-y-4 font-sans text-charcoal/80 dark:text-alabaster/80">
               <div>
-                <p class="font-medium text-charcoal">Address</p>
+                <p class="font-medium text-charcoal dark:text-alabaster">Address</p>
                 <p class="leading-relaxed">{address}</p>
-                <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="text-terracotta hover:text-amber-900 underline underline-offset-4 text-sm mt-1 inline-block transition-colors">
+                <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="text-terracotta hover:text-amber-900 dark:hover:text-gold underline underline-offset-4 text-sm mt-1 inline-block transition-colors">
                   {locationData.getDirections}
                 </a>
               </div>
               
               <div>
-                <p class="font-medium text-charcoal">Get in Touch</p>
-                <p><a href={`tel:${locationData.contact.phone}`} class="hover:text-terracotta transition-colors">{locationData.contact.phone}</a></p>
-                <p><a href={`mailto:${locationData.contact.email}`} class="hover:text-terracotta transition-colors">{locationData.contact.email}</a></p>
+                <p class="font-medium text-charcoal dark:text-alabaster">Get in Touch</p>
+                <p><a href={`tel:${locationData.contact?.phone}`} class="hover:text-terracotta transition-colors">{locationData.contact?.phone}</a></p>
+                <p><a href={`mailto:${locationData.contact?.email}`} class="hover:text-terracotta transition-colors">{locationData.contact?.email}</a></p>
               </div>
             </div>
           </div>
 
           <!-- Hours -->
           <div class="space-y-6">
-            <h3 class="text-xl font-serif font-medium border-b border-charcoal/10 pb-2">{locationData.hours.heading}</h3>
-            <div class="space-y-4 font-sans text-charcoal/80">
+            <h3 class="text-xl font-serif font-medium border-b border-charcoal/10 dark:border-alabaster/10 pb-2">{locationData.hours?.heading}</h3>
+            <div class="space-y-4 font-sans text-charcoal/80 dark:text-alabaster/80">
               <div>
-                <p class="font-medium text-charcoal">{locationData.hours.weekdays}</p>
-                <p>{locationData.hours.time}</p>
+                <p class="font-medium text-charcoal dark:text-alabaster">{locationData.hours?.weekdays}</p>
+                <p>{locationData.hours?.time}</p>
               </div>
               <div>
-                <p class="font-medium text-charcoal">Happy Hour</p>
+                <p class="font-medium text-charcoal dark:text-alabaster">Happy Hour</p>
                 <p>Tue - Fri: 4:00 PM - 6:00 PM</p>
               </div>
             </div>
@@ -98,7 +121,7 @@ const lng = -122.3929;
         </div>
 
         <!-- Parking -->
-        <div class="bg-white/50 p-6 rounded-lg border border-charcoal/5">
+        <div class="bg-white/50 dark:bg-charcoal/50 p-6 rounded-lg border border-charcoal/5 dark:border-alabaster/10">
           <div class="flex items-start gap-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-terracotta shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
@@ -107,8 +130,8 @@ const lng = -122.3929;
               <circle cx="17" cy="17" r="2" />
             </svg>
             <div>
-              <p class="font-medium text-charcoal mb-1">Parking</p>
-              <p class="text-sm text-charcoal/70 leading-relaxed">
+              <p class="font-medium text-charcoal dark:text-alabaster mb-1">Parking</p>
+              <p class="text-sm text-charcoal/70 dark:text-alabaster/70 leading-relaxed">
                 {locationData.parking}
               </p>
             </div>

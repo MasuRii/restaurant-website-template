@@ -22,7 +22,7 @@ test.describe('Mobile Experience', () => {
     await expect(openBtn).toHaveAttribute('aria-expanded', 'true');
 
     // Close menu - use evaluate to ensure click despite potential overlays/viewport issues
-    await closeBtn.evaluate((node) => node.click());
+    await closeBtn.evaluate((node) => (node as HTMLElement).click());
     await expect(mobileMenu).toHaveClass(/translate-x-full/);
     await expect(openBtn).toHaveAttribute('aria-expanded', 'false');
   });
@@ -37,7 +37,7 @@ test.describe('Mobile Experience', () => {
     await expect(mobileMenu).toHaveClass(/translate-x-0/);
 
     // Click link (using evaluate to ensure click works despite any overlays)
-    await storyLink.evaluate((node) => node.click());
+    await storyLink.evaluate((node) => (node as HTMLElement).click());
 
     // Menu should close
     await expect(mobileMenu).toHaveClass(/translate-x-full/);

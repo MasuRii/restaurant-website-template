@@ -7,7 +7,7 @@ import chefImg from '../assets/images/chef.jpg';
 const t = useTranslations(Astro.currentLocale || 'en');
 ---
 
-<section id="story" class="py-24 md:py-32 bg-alabaster text-charcoal overflow-hidden">
+<section id="story" class="py-24 md:py-32 bg-alabaster dark:bg-charcoal-dark text-charcoal dark:text-alabaster overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 md:px-8 space-y-24 md:space-y-32">
     
     <!-- Story Block -->
@@ -22,7 +22,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
             {t('about.title')}
           </h2>
         </div>
-        <div class="space-y-6 text-lg text-charcoal/80 leading-relaxed font-sans">
+        <div class="space-y-6 text-lg text-charcoal/80 dark:text-alabaster/80 leading-relaxed font-sans">
           <p>
             {t('about.description')}
           </p>
@@ -63,7 +63,7 @@ const t = useTranslations(Astro.currentLocale || 'en');
             {t('about.chef.name')}
           </h3>
         </div>
-        <p class="text-lg text-charcoal/80 leading-relaxed font-sans">
+        <p class="text-lg text-charcoal/80 dark:text-alabaster/80 leading-relaxed font-sans">
           {t('about.chef.bio')}
         </p>
         
