@@ -38,6 +38,24 @@ const siteDescription = description || t('site.description');
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Risū & Oak" />
     <link rel="apple-touch-icon" href="/images/icons/apple-icon-180.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:image" content={new URL('/images/hero.jpg', Astro.url)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={siteDescription} />
+    <meta property="twitter:image" content={new URL('/images/hero.jpg', Astro.url)} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={Astro.url} />
+
     <SEOSchema />
     <WebVitals />
     <script is:inline>

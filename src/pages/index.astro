@@ -14,7 +14,7 @@ import { useTranslations } from '../lib/i18n';
 const t = useTranslations(Astro.currentLocale || 'en');
 ---
 
-<BaseLayout title={t('site.title')}>
+<BaseLayout title={t('site.metaTitle') || t('site.title')}>
   <!-- Hero Section -->
   <Hero />
 
